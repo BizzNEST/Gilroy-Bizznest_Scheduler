@@ -39,3 +39,9 @@ Step-by-step instructions on how to get the development environment running.
 
 Instructions and examples for using the project. Include code snippets and screenshots as needed.
 
+## Need Help
+1. Ask Chat-GPT
+2. Search up the problem.
+3. Ask a fellow colleague for help
+4. Ask your senior intern about the problem
+5. Message Alex for help
