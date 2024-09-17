@@ -47,14 +47,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
 const locations = document.getElementById("location");
 // getAll() function will be used when we select all the interns
-var names = [];
+const names = [];
 
 function getAll() {
     fetch('./src/interns.json')
         .then((response) => response.json())
         .then((json) => {
             // initialise an array for names to be added to
-            const names = [];
+            // const names = [];
  
  
             if (json.interns && Array.isArray(json.interns)) {
@@ -68,6 +68,7 @@ function getAll() {
                         });
                     }
                 });
+                console.log(names)
             }
  
  
@@ -169,9 +170,7 @@ function removeByLocation(place) {
         }
     });
 });
-// Example usage
-// getByLocation("Gilroy")
-// getByLocation("Salinas")
+
 
 var filterByDepartment = [];
 const addFilterByDepartment = [];
@@ -331,25 +330,41 @@ function removeByDepartment(role) {
  const finalArray = [];
  function addFinalArray(){
     const checkboxes = internPool.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach(checkbox=>{
-        const checkboxValue = checkbox.value;
-        const intern = intersection.find(intern => intern.name === checkboxValue);
- 
- 
-        if(checkbox.checked && checkbox.value){
+    
+    for(let i = 0; i < names.length; i++){      
+        if(checkboxes[i].checked && checkboxes[i].value === names[i].name){
             finalArray.push({
-                name : intern.name,
-                location : intern.location,
-                department : intern.department
-            })
+                            name: names[i].name,
+                            location : names[i].location,
+                            department : names[i].department
+                        })
         }
-    })
+    }
+    
     console.log(finalArray)
  }
  
  
  
- 
+ function assignDiffDepartment(array) {
+    // Step 1: Shuffle the array to introduce randomness
+    shuffleArray(array);
+
+    // Step 2: Ensure no two consecutive elements have the same department
+    for (let i = 0; i < array.length - 1; i++) {
+        if (array[i].department === array[i + 1].department) {
+            // Find the next available element with a different department
+            for (let j = i + 2; j < array.length; j++) {
+                if (array[j].department !== array[i].department) {
+                    // Swap the elements
+                    [array[i + 1], array[j]] = [array[j], array[i + 1]];
+                    break;
+                }
+            }
+        }
+    }
+    return array;
+}
  function shuffleArray(array) {
     for (let i = 0; i < array.length - 1; i++) {
         const j = Math.floor(Math.random() * (array.length - i)) + i; // Random index from i to end
@@ -359,6 +374,21 @@ function removeByDepartment(role) {
     return array;
  }
 
+
+function toggleLocDep(array){
+    const locationChecked = locationSwitch.querySelector('input[type="checkbox"]');
+    const departmentChecked = departmentSwitch.querySelector('input[type="checkbox"]');
+
+    if (departmentChecked.checked) {
+        assignDiffDepartment(array); // Ensure different departments
+    }
+
+    // Add location-specific logic here if needed in the future
+    console.log(array);
+}
+
+ 
+ 
  function displayPairs(interns) {
     const outcomeBox = document.getElementById('outcome-box'); // Get the outcome box div
     outcomeBox.innerHTML = ''; // Clear previous content
@@ -434,25 +464,31 @@ function showGroups() {
  function checkAccuracy(array){
     var sameCounter = 0;
     var diffCounter = 0;
-    for(let i = 0; i < array.length; i++){
-        person1 = arr[i]
-        person2 = arr[i+1]
-        if(person1.department === person2.department){
+    console.log(array)
+    for(let i = 0; i < array.length-1; i+=2){
+        person1 = array[i].department
+        person2 = array[i+1].department
+        // console.log(person1)
+        if(person1 == person2){
             sameCounter++;
         }else{
             diffCounter ++;
         }
     }
-    console.log(count)
+    console.log(sameCounter)
+    console.log(diffCounter)
  }
  
  
  shuffle.addEventListener("click", function() {
     finalArray.length = 0;
-    addFinalArray()
+    addFinalArray(names)
     shuffleArray(finalArray);
+    toggleLocDep(finalArray)
     displayPairs(finalArray);
+    checkAccuracy(finalArray);
     showGroups();
+    
     // checkAccuracy(finalArray);
  })
 
