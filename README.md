@@ -1,17 +1,6 @@
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 
 ## Code of Conduct
 
-<<<<<<< Updated upstream
-=======
-
-## Code of Conduct
-7a8be49 (code of conduct)
-
->>>>>>> Stashed changes
 * Maintain professionalism in all communications.
 * Keep requests and issues relevant to the work at BizzNEST.
 * Treat everyone with respect—no exceptions.
