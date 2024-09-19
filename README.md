@@ -11,3 +11,9 @@ The goal of this project is to develop a randomized scheduling application using
 * Assist others when needed, embrace a "No man left behind" mentality.
 * Collaborate, have fun, and share your knowledge!
 
+## Need Help
+1. Ask Chat-GPT
+2. Search up the problem.
+3. Ask a fellow colleague for help
+4. Ask your senior intern about the problem
+5. Message Alex for help
