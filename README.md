@@ -11,6 +11,26 @@ The goal of this project is to develop a randomized scheduling application using
 * Assist others when needed, embrace a "No man left behind" mentality.
 * Collaborate, have fun, and share your knowledge!
 
+## Instructions
+> [!NOTE]
+> Basic web development tools (e.g., code editor, browser testing tools), GitHub.
+
+1. Planning and Design
+    - Familiarize yourself with GitHub's best practices and read documentation
+    - Develop wireframes and design prototypes
+
+2. Development
+    - Develop using only HTML, CSS, and JS
+    - Create GitHub issues and update them according to progress
+    - Implement the logic for schedule generation, rule configuration, selection management, and edge case handling.
+
+3. Testing
+    - Perform user acceptance testing to ensure the application meets requirements.
+
+4. Deployment
+    - Deploy the application to a web server or hosting platform
+    - Provide instructions for use and optional documentation.
+
 ## Need Help
 1. Ask Chat-GPT
 2. Search up the problem.
