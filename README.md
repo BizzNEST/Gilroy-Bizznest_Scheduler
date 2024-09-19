@@ -1,5 +1,7 @@
+## Schedule Randomizer
+The goal of this project is to develop a randomized scheduling application using only frontend technologies (HTML, CSS, and JavaScript). The application will allow users to pair interns or group interns from different locations and departments based on customizable rules. It will provide flexibility to include or exclude interns from the schedule with simple selection controls.
 
-## Code of Conduct
+ ## Code of Conduct
 
 * Maintain professionalism in all communications.
 * Keep requests and issues relevant to the work at BizzNEST.
