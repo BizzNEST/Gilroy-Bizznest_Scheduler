@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Digital Nest Randomizer</title>
+</head>
+<body>
+    <nav>
+        <!-- Digital Nest Logo -->
+         <img id="logo" src="assets/digital-nest-logo.png" alt="Logo">
+        <!-- Profile icon -->
+        <ul>
+                <a href="#">
+                    <img id="profile-icon" src="assets/profile-icon.svg" alt="Icon" width="auto" height="auto">
+                </a>
+        </ul>
+    </nav>
+
+    <div class="Filters">
+        <!-- Implement drop down menu's -->
+        <h2>Filter</h2>
+         <!-- Location Dropdown-->
+
+        
+
+        <!-- end -->
+
+        </select>
+        <!-- Department Dropdown -->
+            <select id="department" name="department">
+                <option value="" disabled selected>Department</option>
+                <option value="developer">Web Development</option>
+                <option value="design">Design</option>
+                <option value="video">Film</option>
+                <option value="marketing">Marketing</option>
+                <option value="IT">IT</option>
+            </select>
+        <!-- Schedule Dropdown -->
+        <select id="schedule" name="schedule">
+            <option value="" disabled selected>Schedule</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            
+        </select>
+
+    </div>
+
+    <div class="Shuffle">
+        <button id="shuffle-btn">Shuffle</button>
+    </div>
+
+     <div class="intern-pool">
+        <!-- intern list -->
+        <h3>Interns</h3>
+        <div class="pool-box">
+            <ul>
+                <label>
+                    <input type="checkbox" name="#" value="#">Name
+                    <!-- information goes below name (e.g location, dept, schedule) -->
+                </label>
+            </ul>
+        </div>
+
+        <!-- Select and deselect functionality -->
+     </div>
+
+     <div class="groups">
+    <!-- After randomization, new groups will appear here -->
+        <h3>Selected Groups</h3>
+        <div class="outcome-box">
+            <ul>
+                <label>
+                    <input type="checkbox" name="#" value="#">Name
+                    <!-- information goes below name (e.g location, dept, schedule) -->
+                </label>
+            </ul>
+        </div>
+
+     </div>
+     <div class="export">
+        <!-- button to export the groups into a pdf document -->
+         <button id="export-btn">Export</button>
+     </div>
+
+    
+    <script src="app.js"></script>
+</body>
+</html>
