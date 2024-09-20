@@ -1,5 +1,6 @@
 {
-    "1" : {
+    "interns":[
+     {
         "name": "Ali Taquie",
         "location" : "Watsonville",
         "department": "developer",
@@ -10,7 +11,7 @@
             "Friday" : []
         }
     },
-    "2" :{
+   {
         "name":"Sergio Medina-Ixta",
         "location" : "Watsonville",
         "department": "developer",
@@ -21,7 +22,7 @@
             "Friday" : ["afternoon"]
         }
     },
-    "3" : {
+     {
         "name":"Yuliana Morales-Galvan",
         "location" : "Watsonville",
         "department": "developer",
@@ -32,7 +33,7 @@
             "Friday" : ["full-day"]
         }
     },
-    "4" : {
+    {
         "name" : "Joel Mariscal",
         "location" : "Watsonville",
         "department": "developer",
@@ -43,7 +44,7 @@
             "Friday" : []
         }
     },
-    "5" : {
+     {
         "name" : "Tyler Nguyen",
         "location" : "Stockton",
         "department": "developer",
@@ -54,7 +55,7 @@
             "Friday" : []
         }
     },
-    "6" : {
+     {
         "name" : "Christopher Loya",
         "location" : "Stockton",
         "department": "developer",
@@ -65,7 +66,7 @@
             "Friday" : []
         }
     },
-    "7" : {
+    {
         "name" : "Bledine Messa Ngunte",
         "location" : "Stockton",
         "department": "developer",
@@ -76,7 +77,7 @@
             "Friday" : ["full-day"]
         }
     },
-    "8" : {
+     {
         "name": "Jose Velarde-Ruiz",
         "location" : "Modesto",
         "department": "developer",
@@ -87,7 +88,7 @@
             "Friday" : ["full-day"]
         }
     },
-    "9" : {
+    {
         "name": "Alan Buenrostro",
         "location" : "Modesto",
         "department": "developer",
@@ -98,7 +99,7 @@
             "Friday" : ["full-day"]
         }
     },
-    "10" : {
+     {
         "name" : "Leo Masellis",
         "location" : "Modesto",
         "department": "developer",
@@ -109,7 +110,7 @@
             "Friday" : []
         }
     },
-    "11" : {
+     {
         "name": "Karl Legson",
         "location" : "Modesto",
         "department": "developer",
@@ -120,7 +121,7 @@
             "Friday" : ["morning"]
         }
     },
-    "12" : {
+     {
         "name": "Victor Lomeli Ponce",
         "location" : "Modesto",
         "department": "developer",
@@ -131,7 +132,7 @@
             "Friday" : []
         }
     },
-    "13" : {
+     {
         "name" : "Adrean Cajigas",
         "location" : "Modesto",
         "department": "developer",
@@ -142,7 +143,7 @@
             "Friday" : ["afternoon"]
         }
     },
-    "14" : {
+     {
        "name":"Eli Manzo",
         "location" : "Salinas",
         "department": "developer",
@@ -153,7 +154,7 @@
             "Friday" : []
         }
     },
-    "15 " : {
+   {
         "name": "Liliana Constantino",
         "location" : "Salinas",
         "department": "developer",
@@ -164,7 +165,7 @@
             "Friday" : []
         }
     },
-    "16" : {
+     {
         "name": "Jacqueline Perez",
         "location" : "Salinas",
         "department": "developer",
@@ -175,7 +176,7 @@
             "Friday" : []
         }
     },
-    "17" : {
+     {
         "name": "Alonzo Cabrera ",
         "location" : "Salinas",
         "department": "developer",
@@ -186,7 +187,7 @@
             "Friday" : []
         }
     },
-    "18" : {
+    {
         "name": "Youssef Bazzi",
         "location" : "Gilroy",
         "department": "developer",
@@ -197,7 +198,7 @@
             "Friday" : ["full-day"]
         }
     },
-    "19" : {
+    {
         "name": "Lisandro Jimenez",
         "location" : "Gilroy",
         "department": "developer",
@@ -208,7 +209,7 @@
             "Friday" : ["full-day"]
         }
     },
-    "20" : {
+     {
         "name":"Ian Ellis",
         "location" : "Gilroy",
         "department": "developer",
@@ -222,7 +223,7 @@
 
 
 
-    "21" : {
+     {
         "name": "Fatima Perez",
         "location" : "Modesto",
         "department": "design",
@@ -233,7 +234,7 @@
             "Friday" : []
         }
     },
-    "22" : {
+     {
         "name":"Seneca Rubianes",
         "location" : "Modesto",
         "department": "design",
@@ -244,7 +245,7 @@
             "Friday" : ["full-day"]
         }
     },
-    "23" : {
+     {
         "name":"Carmen Trujillo",
         "location" : "Modesto",
         "department": "design",
@@ -255,7 +256,7 @@
             "Friday" : ["morning"]
         }
     },
-    "24" : {
+     {
         "name":"Andrew Eversley",
         "location" : "Modesto",
         "department": "design",
@@ -266,7 +267,7 @@
             "Friday" : []
         }
     },
-    "25" : {
+     {
         "name": " Nazgol Ghafourian",
         "location" : "Modesto",
         "department": "design",
@@ -277,7 +278,7 @@
             "Friday" : ["full-day"]
         }
     },
-    "26" : {
+    {
         "name":"Nat Talaid",
         "location" : "Stockton",
         "department": "design",
@@ -288,7 +289,7 @@
             "Friday" : []
         }
     },
-    "27" : {
+     {
         "name":"Thalia Gu",
         "location" : "Stockton",
         "department": "design",
@@ -299,7 +300,7 @@
             "Friday" : ["afternoon"]
         }
     },
-    "28" : {
+     {
         "name": "Gianelli Liguidliguid",
         "location" : "Stockton",
         "department": "design",
@@ -310,7 +311,7 @@
             "Friday" : []
         }
     },
-    "29" : {
+    {
         "name": "Sebi Perry",
         "location" : "Watsonville",
         "department": "design",
@@ -321,7 +322,7 @@
             "Friday" : ["full-day"]
         }
     },
-    "30" : {
+    {
         "name":"Ryan Janowitz",
         "location" : "Watsonville",
         "department": "design",
@@ -332,7 +333,7 @@
             "Friday" : []
         }
     },
-    "31" : {
+     {
         "name":"Mirna Gonzalez",
         "location" : "Watsonville",
         "department": "design",
@@ -343,7 +344,7 @@
             "Friday" : []
         }
     },
-    "32" : {
+     {
         "name":"Nancy Cervantes-Herrera",
         "location" : "Watsonville",
         "department": "design",
@@ -354,7 +355,7 @@
             "Friday" : ["morning"]
         }
     },
-    "33" : {
+    {
         "name":"Yadriel Pareja",
         "location" : "Gilroy",
         "department": "design",
@@ -365,7 +366,7 @@
             "Friday" : []
         }
     },
-    "34" : {
+   {
         "name":"Princess Rodriguez",
         "location" : "Gilroy",
         "department": "design",
@@ -376,7 +377,7 @@
             "Friday" : ["morning"]
         }
     },
-    "35" : {
+    {
         "name":"Milagros Perez",
         "location" : "Gilroy",
         "department": "design",
@@ -387,7 +388,7 @@
             "Friday" : []
         }
     },
-    "36" : {
+     {
         "name":"Xavier Cruz",
         "location" : "Salinas",
         "department": "design",
@@ -398,7 +399,7 @@
             "Friday" : []
         }
     },
-    "37" : {
+     {
         "name":"Alexa Zavala",
         "location" : "Salinas",
         "department": "design",
@@ -409,7 +410,7 @@
             "Friday" : ["full-day"]
         }
     },
-    "38" : {
+     {
         "name":"Emma Griffin-Ortiz",
         "location" : "Salinas",
         "department": "design",
@@ -420,7 +421,7 @@
             "Friday" : []
         }
     },
-    "39" : {
+    {
         "name":"Cristian Reyes",
         "location" : "Salinas",
         "department": "design",
@@ -433,7 +434,7 @@
     },
 
 
-    "40" : {
+     {
         "name":"Lizeth Villareal",
         "location" : "Watsonville",
         "department": "video",
@@ -444,7 +445,7 @@
             "Friday" : ["full-day"]
         }
     },
-    "41" : {
+    {
         "name":"Ivan Ramirez",
         "location" : "Watsonville",
         "department": "video",
@@ -455,7 +456,7 @@
             "Friday" : []
         }
     },
-    "42" : {
+    {
         "name":"Julian Guerrero",
         "location" : "Watsonville",
         "department": "video",
@@ -466,7 +467,7 @@
             "Friday" : ["full-day"]
         }
     },
-    "43" : {
+    {
         "name":"Dominic Morales",
         "location" : "Watsonville",
         "department": "video",
@@ -477,7 +478,7 @@
             "Friday" : ["full-day"]
         }
     },
-    "44" : {
+   {
         "name":"Luis Perez",
         "location" : "Watsonville",
         "department": "video",
@@ -488,7 +489,7 @@
             "Friday" : ["morning"]
         }
     },
-    "45" : {
+    {
         "name":"Rogelio Valdez-Perez",
         "location" : "Watsonville",
         "department": "video",
@@ -499,7 +500,7 @@
             "Friday" : []
         }
     },
-    "46" : {
+    {
         "name":"Melanie Torres",
         "location" : "Watsonville",
         "department": "video",
@@ -510,7 +511,7 @@
             "Friday" : ["full-day"]
         }
     },
-    "47" : {
+     {
         "name":"Emily Ramirez",
         "location" : "Watsonville",
         "department": "video",
@@ -521,7 +522,7 @@
             "Friday" : ["full-day"]
         }
     },
-    "48" : {
+    {
         "name":"Josh Matadamas",
         "location" : "Salinas",
         "department": "video",
@@ -532,7 +533,7 @@
             "Friday" : ["full-day"]
         }
     },
-    "49" : {
+     {
         "name":"Julia Ruiz",
         "location" : "Salinas",
         "department": "video",
@@ -543,7 +544,7 @@
             "Friday" : []
         }
     },
-    "50" : {
+  {
         "name":"Emiliano Margarito",
         "location" : "Salinas",
         "department": "video",
@@ -554,7 +555,7 @@
             "Friday" : ["full-day"]
         }
     },
-    "51" : {
+    {
         "name":"Elijah Younger",
         "location" : "Salinas",
         "department": "video",
@@ -565,7 +566,7 @@
             "Friday" : ["morning"]
         }
     },
-    "52" : {
+     {
         "name":"Lesley Vargas",
         "location" : "Salinas",
         "department": "video",
@@ -576,7 +577,7 @@
             "Friday" : ["full-day"]
         }
     },
-    "53" : {
+ {
         "name":"Natalia Rodas",
         "location" : "Salinas",
         "department": "video",
@@ -587,7 +588,7 @@
             "Friday" : ["full-day"]
         }
     },
-    "54" : {
+   {
         "name":"Nicolas Biala",
         "location" : "Salinas",
         "department": "video",
@@ -598,7 +599,7 @@
             "Friday" : ["morning"]
         }
     },
-    "55" : {
+    {
         "name": "Talia Mendoza",
         "location" : "Salinas",
         "department": "video",
@@ -611,7 +612,7 @@
     },
     
     
-    "56" : {
+   {
         "name":"Maribel Garcia",
         "location" : "Modesto",
         "department": "marketing",
@@ -622,7 +623,7 @@
             "Friday" : ["morning"]
         }
     },
-    "57" : {
+     {
         "name":"Fernanda Jordan",
         "location" : "Watsonville",
         "department": "marketing",
@@ -634,7 +635,7 @@
         }
     },
 
-    "58" : {
+    {
         "name": "Elissa Covarrubias",
         "location" : "Salinas",
         "department": "IT",
@@ -645,5 +646,5 @@
             "Friday" : []
         }
     }
-
+    ]
 }
