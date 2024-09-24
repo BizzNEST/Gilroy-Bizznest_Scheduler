@@ -22,10 +22,14 @@ nav {
 
 .pool-box {
     border: 2px solid black;
+    width: fit-content;
     padding: 1em;
 }
 
 .outcome-box {
     border: 2px solid black;
     padding: 1em;
+}
+#internPool{
+    list-style: none;
 }
