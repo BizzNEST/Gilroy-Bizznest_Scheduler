@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", function(){
-    
+
+    const internPool = document.getElementById("internPool")
+
+
     //function to click on export button and download
     document.getElementById("export-btn").addEventListener("click", function(){
         //make sure to target the container you need down below
@@ -32,13 +35,26 @@ function getAll() {
                     }
                 });
             }
+            names.forEach(person => {
+                const li = document.createElement("li"); // Create a new li element
+                const label = document.createElement("label"); // Create a new label
+                const checkbox = document.createElement("input"); // Create a checkbox input
 
-            console.log(names); // Log the names array
+                checkbox.type = "checkbox"; // Set the type to checkbox
+                checkbox.value = person; // Set the value of the checkbox to the intern's name
+
+                // Set the label text and append the checkbox to the label
+                label.textContent = person;
+                label.prepend(checkbox); // Add checkbox before the text
+
+                // Append the label to the li, and li to the ul
+                li.appendChild(label);
+                internPool.appendChild(li);
+            });
         })
         .catch((error) => console.error('Error fetching data:', error));
 }
 getAll();
-
 var filterByLocation = [];
 
 // Adding all interns in that location to the array
@@ -82,5 +98,5 @@ function getByDepartment(role) {
         .catch((error) => console.error('Error fetching data:', error));
 }
 getByDepartment("developer")
-    
+
 });
