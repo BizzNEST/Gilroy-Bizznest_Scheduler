@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const internPool = document.getElementById("internPool")
     const selectAll = document.getElementById("select-all")
     const deselectAll = document.getElementById("deselect-all")
+    const locationFilter = document.getElementById("location")
 
 
     //function to click on export button and download
@@ -37,6 +38,7 @@ function getAll() {
                     }
                 });
             }
+            //add a checkbox to each intern
             names.forEach(person => {
                 const li = document.createElement("li"); // Create a new li element
                 const label = document.createElement("label"); // Create a new label
@@ -76,10 +78,23 @@ function getByLocation(place) {
             console.log( filterByLocation); 
         })
         .catch((error) => console.error('Error fetching data:', error));
+
+        locationFilter.addEventListener('change',function(){
+            const checkboxes = internPool.querySelectorAll('input[type="checkbox"]')
+            checkboxes.forEach(checkbox=>{
+                if(locationFilter.value === intern.location){
+                    checkbox.checked = true;
+                }
+                else{
+                    checkbox.checked = false;
+                }
+            })
+        })
 }
 
 // Example usage
-getByLocation("Gilroy")
+getByLocation(locationFilter.value)
+
 
 var filterByDepartment = [];
 function getByDepartment(role) {
