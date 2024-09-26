@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function(){
         //make sure to target the container you need down below
         html2canvas(document.getElementById("outcome-box")).then(function(canvas){
             let imgData = canvas.toDataURL("image/png");
-
             let link = document.createElement('a');
             link.href = imgData;
             link.download = "randomizerCapture"
@@ -116,5 +115,18 @@ function getByDepartment(role) {
         .catch((error) => console.error('Error fetching data:', error));
 }
 getByDepartment("developer")
-  
+    //this is for selecting all the boxes of the interns
+selectAll.addEventListener("click",function(){
+    const checkboxes = internPool.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox=>{
+        checkbox.checked = true
+    })
+})
+//thiis is for deselcting all the boxes of the interns
+deselectAll.addEventListener("click",function(){
+    const checkboxes = internPool.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox =>{
+        checkbox.checked = false
+    })
+})
 });
