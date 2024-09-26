@@ -22,38 +22,30 @@
     <div class="Filters">
         <!-- Implement drop down menu's -->
         <h2>Filter</h2>
-         <!-- Location Dropdown-->
-         <select id = "location" name="location">
-            <option value = "" disabled selected>Location</option>    
-            <option value="Salinas">Salinas</option>
-            <option value="Gilroy">Gilroy</option>
-            <option value="Modesto">Modesto</option>
-            <option value="Watsonville">Watsonville</option>
-            <option value="Stockton">Stockton</option>
-        </select>
-        
-
-        <!-- end -->
-
-        </select>
-        <!-- Department Dropdown -->
-            <select id="department" name="department">
-                <option value="" disabled selected>Department</option>
-                <option value="developer">Web Development</option>
-                <option value="design">Design</option>
-                <option value="video">Film</option>
-                <option value="marketing">Marketing</option>
-                <option value="IT">IT</option>
-            </select>
-        <!-- Schedule Dropdown -->
-        <select id="schedule" name="schedule">
-            <option value="" disabled selected>Schedule</option>
-            <option value="Tuesday">Tuesday</option>
-            <option value="Wednesday">Wednesday</option>
-            <option value="Thursday">Thursday</option>
-            <option value="Friday">Friday</option>
-            
-        </select>        
+        <div class="filteringDropdowns">
+            <div class="checkbox-dropdown">
+                <!--department dropdown-->
+                <button class="dropdown-btn">Department &#9660;</button>
+                <div class="dropdown-content" id="roles">
+                    <label><input type="checkbox" value="Web Development">Web Development</label>
+                    <label><input type="checkbox" value="Design">Design</label>
+                    <label><input type="checkbox" value="Video">Video</label>
+                    <label><input type="checkbox" value="Marketing">Marketing</label>
+                    <label><input type="checkbox" value="IT">IT</label>
+                </div>
+            </div>
+    
+            <div class="checkbox-dropdown">
+                <!--Location dropdown-->
+                <button class="dropdown-btn">Location  &#9660;</button>
+                <div class="dropdown-content" id="location">
+                    <label><input type="checkbox" value="Gilroy">Gilroy</label>
+                    <label><input type="checkbox" value="Modesto">Modesto</label>
+                    <label><input type="checkbox" value="Salinas">Salinas</label>
+                    <label><input type="checkbox" value="Stockton">Stockton</label>
+                    <label><input type="checkbox" value="Watsonville">Watsonville</label>
+                </div>
+            </div>   
     </div>
 
     <div class="Shuffle">

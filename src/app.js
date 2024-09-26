@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function(){
 
     const internPool = document.getElementById("internPool")
+    const dropDownButtons = document.querySelectorAll(".dropdown-btn");
     const selectAll = document.getElementById("select-all")
     const deselectAll = document.getElementById("deselect-all")
 
@@ -20,6 +21,22 @@ document.addEventListener("DOMContentLoaded", function(){
         document.body.removeChild(link);
         });
     });
+
+    //function for dropdown with checkbox
+    dropDownButtons.forEach(button => {
+        button.addEventListener("click", function(){
+            //gets the next element in the HTML after button is clicked
+            const dropDownContent = this.nextElementSibling;
+            dropDownButtons.forEach(btn => {
+                const otherDropDownContent = btn.nextElementSibling;
+                if(otherDropDownContent !== dropDownContent){
+                    otherDropDownContent.classList.remove("show");
+                }
+            });
+            dropDownContent.classList.toggle("show");
+        });
+    });
+
 const locations = document.getElementById("location");
 // getAll() function will be used when we select all the interns
 var names = [];
