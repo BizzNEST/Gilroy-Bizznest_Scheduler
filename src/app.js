@@ -115,5 +115,5 @@ function getByDepartment(role) {
         .catch((error) => console.error('Error fetching data:', error));
 }
 getByDepartment("developer")
-
+  
 });
