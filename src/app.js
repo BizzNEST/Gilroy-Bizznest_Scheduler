@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function(){
                     otherDropDownContent.classList.remove("show");
                 }
             });
-
             dropDownContent.classList.toggle("show");
         });
     });

@@ -34,7 +34,7 @@ nav {
     display: inline-block;
 }
 
-.dropDownButton:hover, label:hover{
+.dropdown-btn:hover, label:hover{
     cursor: pointer;
 }
 
