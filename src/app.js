@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function(){
 
     const internPool = document.getElementById("internPool")
+    const selectAll = document.getElementById("select-all")
+    const deselectAll = document.getElementById("deselect-all")
 
 
     //function to click on export button and download
@@ -98,5 +100,18 @@ function getByDepartment(role) {
         .catch((error) => console.error('Error fetching data:', error));
 }
 getByDepartment("developer")
-
+//this is for selecting all the boxes of the interns
+selectAll.addEventListener("click",function(){
+    const checkboxes = internPool.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox=>{
+        checkbox.checked = true
+    })
+})
+//thiis is for deselcting all the boxes of the interns
+deselectAll.addEventListener("click",function(){
+    const checkboxes = internPool.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox =>{
+        checkbox.checked = false
+    })
+})
 });
