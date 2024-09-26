@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
     const internPool = document.getElementById("internPool")
     const dropDownButtons = document.querySelectorAll(".dropdown-btn");
+    const selectAll = document.getElementById("select-all")
+    const deselectAll = document.getElementById("deselect-all")
 
 
     //function to click on export button and download
@@ -9,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function(){
         //make sure to target the container you need down below
         html2canvas(document.getElementById("outcome-box")).then(function(canvas){
             let imgData = canvas.toDataURL("image/png");
-
             let link = document.createElement('a');
             link.href = imgData;
             link.download = "randomizerCapture"
@@ -33,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function(){
             dropDownContent.classList.toggle("show");
         });
     });
-
 
 const locations = document.getElementById("location");
 // getAll() function will be used when we select all the interns
@@ -115,5 +115,18 @@ function getByDepartment(role) {
         .catch((error) => console.error('Error fetching data:', error));
 }
 getByDepartment("developer")
-  
+    //this is for selecting all the boxes of the interns
+selectAll.addEventListener("click",function(){
+    const checkboxes = internPool.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox=>{
+        checkbox.checked = true
+    })
+})
+//thiis is for deselcting all the boxes of the interns
+deselectAll.addEventListener("click",function(){
+    const checkboxes = internPool.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox =>{
+        checkbox.checked = false
+    })
+})
 });
