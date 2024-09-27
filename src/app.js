@@ -72,8 +72,8 @@ function getAll() {
         .catch((error) => console.error('Error fetching data:', error));
 }
 getAll();
-var filterByLocation = [];
-
+const addFilterByLocation = [];
+var filterByLocation =[];
 // Adding all interns in that location to the array
 function getByLocation(place) {
     fetch('./interns.json')
@@ -87,14 +87,17 @@ function getByLocation(place) {
                 //map to the names of those interns
                 .map(intern => intern.name); 
             }
-
             console.log( filterByLocation); 
+            filterByLocation.forEach(person=>{
+                addFilterByLocation.push(person)
+            })
+            console.log(addFilterByLocation)
         })
         .catch((error) => console.error('Error fetching data:', error));
 }
-
 // Example usage
 getByLocation("Gilroy")
+getByLocation("Salinas")
 
 var filterByDepartment = [];
 function getByDepartment(role) {
