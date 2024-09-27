@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const deselectAll = document.getElementById("deselect-all")
     const location = document.getElementById("location")
     const department = document.getElementById("department")
+    const filter = document.getElementById("filter")
 
 
     //function to click on export button and download
@@ -191,8 +192,43 @@ department.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
 });
 // getByDepartment("developer")
 // getByDepartment("design")
+const intersection = []
+function filterArray(arr1,arr2){
+    if(arr1.length == 0){
+        arr2.forEach(person=>{
+            intersection.push(person)
+        })
+        console.log(intersection)
+    }else if(arr2.length == 0){
+        arr1.forEach(person=>{
+            intersection.push(person)
+        })
+        console.log(intersection)
+    }else{
+         const intern = arr1.filter(value => arr2.includes(value));
+         intern.forEach(person=>{
+            intersection.push(person)
+         })
+        console.log(intersection);
+    }
+    const checkboxes = internPool.querySelectorAll('input[type="checkbox"]');
+            
+            checkboxes.forEach(checkbox =>{
+                const internName = checkbox.value;
 
+                if(intersection.includes(internName)){
+                    checkbox.checked = true;
+                }else{
+                    checkbox.checked = false;
+                }
+            });           
+}
 
+filter.addEventListener("click", function(){
+    intersection.length = 0
+    filterArray(addFilterByDepartment,addFilterByLocation)
+
+})
 
 
 
