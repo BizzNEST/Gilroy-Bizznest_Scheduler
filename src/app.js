@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", function(){
     const dropDownButtons = document.querySelectorAll(".dropdown-btn");
     const selectAll = document.getElementById("select-all")
     const deselectAll = document.getElementById("deselect-all")
+    const location = document.getElementById("location")
+    const department = document.getElementById("department")
 
 
     //function to click on export button and download
@@ -52,6 +54,7 @@ function getAll() {
                     }
                 });
             }
+            // console.log(names)
             names.forEach(person => {
                 const li = document.createElement("li"); // Create a new li element
                 const label = document.createElement("label"); // Create a new label
@@ -72,6 +75,8 @@ function getAll() {
         .catch((error) => console.error('Error fetching data:', error));
 }
 getAll();
+
+
 const addFilterByLocation = [];
 var filterByLocation =[];
 // Adding all interns in that location to the array
@@ -87,7 +92,7 @@ function getByLocation(place) {
                 //map to the names of those interns
                 .map(intern => intern.name); 
             }
-            console.log( filterByLocation); 
+            // console.log( filterByLocation); 
             filterByLocation.forEach(person=>{
                 addFilterByLocation.push(person)
             })
@@ -95,11 +100,44 @@ function getByLocation(place) {
         })
         .catch((error) => console.error('Error fetching data:', error));
 }
+function removeByLocation(place) {
+    fetch('./interns.json')
+        .then((response) => response.json())
+        .then((json) => {
+            let filterByLocation = [];
+            if (json.interns && Array.isArray(json.interns)) {
+                filterByLocation = json.interns
+                    .filter(intern => intern.location === place)
+                    .map(intern => intern.name);
+            }
+            
+            // Remove the interns from addFilterByLocation
+            filterByLocation.forEach(intern => {
+                const index = addFilterByLocation.indexOf(intern);
+                if (index !== -1) {
+                    addFilterByLocation.splice(index, 1); // Remove from array
+                }
+            });
+
+            console.log(addFilterByLocation); 
+        })
+        .catch((error) => console.error('Error fetching data:', error));
+}
+location.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+    checkbox.addEventListener("change", function() {
+        if (checkbox.checked) {
+            getByLocation(checkbox.value); // Add interns to the array when checked
+        } else {
+            removeByLocation(checkbox.value); // Remove interns from the array when unchecked
+        }
+    });
+});
 // Example usage
-getByLocation("Gilroy")
-getByLocation("Salinas")
+// getByLocation("Gilroy")
+// getByLocation("Salinas")
 
 var filterByDepartment = [];
+const addFilterByDepartment = [];
 function getByDepartment(role) {
     fetch('./interns.json')
         .then((response) => response.json())
@@ -112,12 +150,52 @@ function getByDepartment(role) {
                 //map to the names of those interns
                 .map(intern => intern.name); 
             }
-
-            console.log( filterByDepartment); 
+            filterByDepartment.forEach(person=>{
+                addFilterByDepartment.push(person)
+            })
+            console.log(addFilterByDepartment)
         })
         .catch((error) => console.error('Error fetching data:', error));
 }
-getByDepartment("developer")
+function removeByDepartment(role) {
+    fetch('./interns.json')
+        .then((response) => response.json())
+        .then((json) => {
+            let filterByDepartment = [];
+            if (json.interns && Array.isArray(json.interns)) {
+                filterByDepartment = json.interns
+                    .filter(intern => intern.department === role)
+                    .map(intern => intern.name);
+            }
+            
+            // Remove the interns from addFilterByLocation
+            filterByDepartment.forEach(intern => {
+                const index = addFilterByDepartment.indexOf(intern);
+                if (index !== -1) {
+                    addFilterByDepartment.splice(index, 1); // Remove from array
+                }
+            });
+
+            console.log(addFilterByDepartment); 
+        })
+        .catch((error) => console.error('Error fetching data:', error));
+}
+department.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+    checkbox.addEventListener("change", function() {
+        if (checkbox.checked) {
+            getByDepartment(checkbox.value); // Add interns to the array when checked
+        } else {
+            removeByDepartment(checkbox.value); // Remove interns from the array when unchecked
+        }
+    });
+});
+// getByDepartment("developer")
+// getByDepartment("design")
+
+
+
+
+
     //this is for selecting all the boxes of the interns
 selectAll.addEventListener("click",function(){
     const checkboxes = internPool.querySelectorAll('input[type="checkbox"]');
