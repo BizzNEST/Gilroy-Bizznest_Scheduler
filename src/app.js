@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const location = document.getElementById("location")
     const department = document.getElementById("department")
     const filter = document.getElementById("filter")
-
+    const shuffle = document.getElementById("shuffle-btn")
 
     //function to click on export button and download
     document.getElementById("export-btn").addEventListener("click", function(){
@@ -239,11 +239,28 @@ selectAll.addEventListener("click",function(){
         checkbox.checked = true
     })
 })
-//thiis is for deselcting all the boxes of the interns
+//this is for deselcting all the boxes of the interns
 deselectAll.addEventListener("click",function(){
     const checkboxes = internPool.querySelectorAll('input[type="checkbox"]');
     checkboxes.forEach(checkbox =>{
         checkbox.checked = false
     })
 })
+const finalArray = [];
+function addFinalArray(){
+    const checkboxes = internPool.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox=>{
+        if(checkbox.checked){
+            finalArray.push(checkbox.value)
+        }
+    })
+    console.log(finalArray)
+}
+
+
+shuffle.addEventListener("click",function(){
+    addFinalArray()
+
+})
+
 });
