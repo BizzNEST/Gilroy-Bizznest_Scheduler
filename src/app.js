@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function() {
 
     const internPool = document.getElementById("internPool")
     const dropDownButtons = document.querySelectorAll(".dropdown-btn");
@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", function(){
     const department = document.getElementById("department")
     const filter = document.getElementById("filter")
     const shuffle = document.getElementById("shuffle-btn")
+    const outcomeBox = document.querySelector("outcome-box");
+    const groupsContainer = document.getElementById("groups-container")
 
     //function to click on export button and download
     document.getElementById("export-btn").addEventListener("click", function(){
@@ -257,10 +259,117 @@ function addFinalArray(){
     console.log(finalArray)
 }
 
+function shuffleArray(array) {
+    for (let i = 0; i < array.length - 1; i++) {
+        const j = Math.floor(Math.random() * (array.length - i)) + i; // Random index from i to end
+        [array[i], array[j]] = [array[j], array[i]];  // Swap elements
+    }
+    console.log(array)
+    return array;
+}
 
-shuffle.addEventListener("click",function(){
+// function assignPartners(array) {
+//     array.forEach(person => {
+//         const li = document.createElement("li"); // Create a new li element
+//         const label = document.createElement("label"); // Create a new label
+
+//         // Set the label text and append the checkbox to the label
+//         label.textContent = person;
+//         // Append the label to the li, and li to the ul
+//         li.appendChild(label);
+//         outcomeBox.appendChild(li);
+
+//         })
+// };
+
+ function displayPairs(interns) {
+    groupsContainer.innerHTML = ''; // Clear previous groups
+    if (interns.length % 2 == 0) {
+        for (let i = 0; i < interns.length; i += 2) {
+            const li = document.createElement("li");
+            const label = document.createElement("label");
+    
+            // Handle case where we have an odd number of interns
+
+            const partner1 = interns[i];
+            const partner2 = interns[i + 1]; // if there's no second intern, show 'No Partner'
+    
+            label.textContent = `${partner1} & ${partner2}`;
+            li.appendChild(label);
+            groupsContainer.appendChild(li);
+        }
+    } 
+    else {
+        for (let i = 0; i < interns.length - 3; i += 2) {
+            const li = document.createElement("li");
+            const label = document.createElement("label");
+    
+            // Handle case where we have an odd number of interns
+            const partner1 = interns[i];
+            const partner2 = interns[i + 1]; // if there's no second intern, show 'No Partner'
+
+    
+            label.textContent = `${partner1} & ${partner2}`;
+            li.appendChild(label);
+            groupsContainer.appendChild(li);
+    }
+    const li = document.createElement("li");
+    const label = document.createElement("label");
+    label.textContent = `${interns[interns.length - 3]} & ${interns[interns.length - 2]} & ${interns[interns.length - 1]}`;
+    li.appendChild(label);
+    groupsContainer.appendChild(li);
+    }   
+}
+
+shuffle.addEventListener("click", function() {
+    finalArray.length = 0;
     addFinalArray()
-
+    shuffleArray(finalArray);
+    displayPairs(finalArray);
 })
 
 });
+
+
+
+
+
+///// Imported code
+
+
+
+//// shuffle algorithm
+
+
+//using temporary array to test display method
+// function displayPairs(interns) {
+//     groupsContainer.innerHTML = ''; // Clear previous groups
+//     interns.forEach(intern => {
+//         const li = document.createElement("li"); // Create a new li element
+//         const label = document.createElement("label"); // Create a new label
+//         label.textContent = intern;
+//         // Append the label to the li, and li to the ul
+//         li.appendChild(label);
+//         outcomeBox.appendChild(li);
+//     })
+// }
+
+// shuffleButton(filteredarray);
+
+//  //function to display pairs of interns
+//  function displayPairs(interns) {
+//     groupsContainer.innerHTML = ''; // Clear previous groups
+    
+//     for (let i = 0; i < interns.length; i += 2) {
+//         const li = document.createElement("li");
+//         const label = document.createElement("label");
+
+//         // Handle case where we have an odd number of interns
+//         const partner1 = interns[i];
+//         const partner2 = interns[i + 1] || "No Partner"; // if there's no second intern, show 'No Partner'
+
+//         label.textContent = `${partner1} & ${partner2}`;
+//         li.appendChild(label);
+//         groupsContainer.appendChild(li);
+//     }
+// }
