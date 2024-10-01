@@ -45,7 +45,7 @@ const locations = document.getElementById("location");
 var names = [];
 
 function getAll() {
-    fetch('./interns.json')
+    fetch('./src/interns.json')
         .then((response) => response.json())
         .then((json) => {
             // initialise an array for names to be added to
@@ -84,7 +84,7 @@ const addFilterByLocation = [];
 var filterByLocation =[];
 // Adding all interns in that location to the array
 function getByLocation(place) {
-    fetch('./interns.json')
+    fetch('./src/interns.json')
         .then((response) => response.json())
         .then((json) => {
             // Filter the interns based on the location
@@ -104,7 +104,7 @@ function getByLocation(place) {
         .catch((error) => console.error('Error fetching data:', error));
 }
 function removeByLocation(place) {
-    fetch('./interns.json')
+    fetch('./src/interns.json')
         .then((response) => response.json())
         .then((json) => {
             let filterByLocation = [];
@@ -142,7 +142,7 @@ location.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
 var filterByDepartment = [];
 const addFilterByDepartment = [];
 function getByDepartment(role) {
-    fetch('./interns.json')
+    fetch('./src/interns.json')
         .then((response) => response.json())
         .then((json) => {
             // Filter the interns based on the location
@@ -161,7 +161,7 @@ function getByDepartment(role) {
         .catch((error) => console.error('Error fetching data:', error));
 }
 function removeByDepartment(role) {
-    fetch('./interns.json')
+    fetch('./src/interns.json')
         .then((response) => response.json())
         .then((json) => {
             let filterByDepartment = [];
