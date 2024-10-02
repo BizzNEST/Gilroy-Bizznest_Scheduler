@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const shuffle = document.getElementById("shuffle-btn")
     const outcomeBox = document.querySelector("outcome-box");
     const groupsContainer = document.getElementById("groups-container")
+    const locationSwitch = document.getElementById("location-switch")
+    const departmentSwitch = document.getElementById("department-switch")
 
     //function to click on export button and download
     document.getElementById("export-btn").addEventListener("click", function(){
@@ -79,7 +81,29 @@ function getAll() {
 }
 getAll();
 
-
+const nameObjects = []
+function getAllObjects() {
+    fetch('./interns.json')
+        .then((response) => response.json())
+        .then((json) => {
+            // initialise an array for names to be added to
+            if (json.interns && Array.isArray(json.interns)) {
+                json.interns.forEach(intern => {
+                    // if the names exist then push them onto the array
+                    if (intern.name && intern.location && intern.department) {
+                        nameObjects.push({
+                            name: intern.name,
+                            location: intern.location,
+                            department: intern.department
+                        });
+                    }
+                });
+            }
+            console.log(nameObjects)
+       
+        })
+        .catch((error) => console.error('Error fetching data:', error));
+}
 const addFilterByLocation = [];
 var filterByLocation =[];
 // Adding all interns in that location to the array
@@ -93,11 +117,19 @@ function getByLocation(place) {
                 //filter the array to those interns
                 .filter(intern => intern.location === place)
                 //map to the names of those interns
-                .map(intern => intern.name); 
+                .map(intern => ({
+                        name: intern.name,
+                        location: intern.location,
+                        department: intern.department
+                })); 
             }
             // console.log( filterByLocation); 
-            filterByLocation.forEach(person=>{
-                addFilterByLocation.push(person)
+            filterByLocation.forEach(intern => {
+                addFilterByLocation.push({
+                    person: intern.name,
+                    place: intern.location,
+                    role: intern.department
+                });
             })
             console.log(addFilterByLocation)
         })
@@ -111,12 +143,19 @@ function removeByLocation(place) {
             if (json.interns && Array.isArray(json.interns)) {
                 filterByLocation = json.interns
                     .filter(intern => intern.location === place)
-                    .map(intern => intern.name);
+                    .map(intern => ({
+                        name: intern.name,
+                        location: intern.location,
+                        department: intern.department
+                })); 
             }
             
             // Remove the interns from addFilterByLocation
             filterByLocation.forEach(intern => {
-                const index = addFilterByLocation.indexOf(intern);
+                const index = addFilterByLocation.indexOf(addIntern => 
+                    addIntern.name === intern.name && 
+                    addIntern.department === intern.department && 
+                    addIntern.location === intern.location);
                 if (index !== -1) {
                     addFilterByLocation.splice(index, 1); // Remove from array
                 }
@@ -151,10 +190,18 @@ function getByDepartment(role) {
                 //filter the array to those interns
                 .filter(intern => intern.department === role)
                 //map to the names of those interns
-                .map(intern => intern.name); 
+                .map(intern => ({
+                    name: intern.name,
+                    location: intern.location,
+                    department: intern.department
+            })); 
             }
-            filterByDepartment.forEach(person=>{
-                addFilterByDepartment.push(person)
+            filterByDepartment.forEach(intern => {
+                addFilterByDepartment.push({
+                    person: intern.name,
+                    place: intern.location,
+                    role: intern.department
+                });
             })
             console.log(addFilterByDepartment)
         })
@@ -164,11 +211,15 @@ function removeByDepartment(role) {
     fetch('./interns.json')
         .then((response) => response.json())
         .then((json) => {
-            let filterByDepartment = [];
+            // let filterByDepartment = [];
             if (json.interns && Array.isArray(json.interns)) {
                 filterByDepartment = json.interns
                     .filter(intern => intern.department === role)
-                    .map(intern => intern.name);
+                    .map(intern => ({
+                        name: intern.name,
+                        location: intern.location,
+                        department: intern.department
+                })); 
             }
             
             // Remove the interns from addFilterByLocation
@@ -268,19 +319,6 @@ function shuffleArray(array) {
     return array;
 }
 
-// function assignPartners(array) {
-//     array.forEach(person => {
-//         const li = document.createElement("li"); // Create a new li element
-//         const label = document.createElement("label"); // Create a new label
-
-//         // Set the label text and append the checkbox to the label
-//         label.textContent = person;
-//         // Append the label to the li, and li to the ul
-//         li.appendChild(label);
-//         outcomeBox.appendChild(li);
-
-//         })
-// };
 
  function displayPairs(interns) {
     groupsContainer.innerHTML = ''; // Clear previous groups
@@ -320,56 +358,37 @@ function shuffleArray(array) {
     groupsContainer.appendChild(li);
     }   
 }
+// function checkDiffDepartment(){
+
+// }
+// function checkDiffLocation(){
+
+// }
+
+function checkAccuracy(array){
+    var sameCounter = 0;
+    var diffCounter = 0;
+    for(let i = 0; i < array.length; i++){
+        person1 = arr[i]
+        person2 = arr[i+1]
+        if(person1.department === person2.department){
+            sameCounter++;
+        }else{
+            diffCounter ++;
+        }
+    }
+    console.log(count)
+}
 
 shuffle.addEventListener("click", function() {
+    getAllObjects()
     finalArray.length = 0;
     addFinalArray()
     shuffleArray(finalArray);
     displayPairs(finalArray);
+    // checkAccuracy(finalArray);
 })
 
 });
 
 
-
-
-
-///// Imported code
-
-
-
-//// shuffle algorithm
-
-
-//using temporary array to test display method
-// function displayPairs(interns) {
-//     groupsContainer.innerHTML = ''; // Clear previous groups
-//     interns.forEach(intern => {
-//         const li = document.createElement("li"); // Create a new li element
-//         const label = document.createElement("label"); // Create a new label
-//         label.textContent = intern;
-//         // Append the label to the li, and li to the ul
-//         li.appendChild(label);
-//         outcomeBox.appendChild(li);
-//     })
-// }
-
-// shuffleButton(filteredarray);
-
-//  //function to display pairs of interns
-//  function displayPairs(interns) {
-//     groupsContainer.innerHTML = ''; // Clear previous groups
-    
-//     for (let i = 0; i < interns.length; i += 2) {
-//         const li = document.createElement("li");
-//         const label = document.createElement("label");
-
-//         // Handle case where we have an odd number of interns
-//         const partner1 = interns[i];
-//         const partner2 = interns[i + 1] || "No Partner"; // if there's no second intern, show 'No Partner'
-
-//         label.textContent = `${partner1} & ${partner2}`;
-//         li.appendChild(label);
-//         groupsContainer.appendChild(li);
-//     }
-// }
