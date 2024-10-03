@@ -44,15 +44,13 @@ document.addEventListener("DOMContentLoaded", function() {
             dropDownContent.classList.toggle("show");
         });
     });
- 
- 
- const locations = document.getElementById("location");
- // getAll() function will be used when we select all the interns
- var names = [];
- 
- 
- function getAll() {
-    fetch('interns.json')
+
+const locations = document.getElementById("location");
+// getAll() function will be used when we select all the interns
+var names = [];
+
+function getAll() {
+    fetch('./src/interns.json')
         .then((response) => response.json())
         .then((json) => {
             // initialise an array for names to be added to
@@ -95,24 +93,16 @@ document.addEventListener("DOMContentLoaded", function() {
                 internPool.appendChild(li);
             });
         })
-        .catch((err) => {
-            console.error('Error fetching interns:', err);
-        });
- }
- 
- 
- 
- 
- getAll();
- 
- 
- 
- 
- const addFilterByLocation = [];
- var filterByLocation =[];
- // Adding all interns in that location to the array
- function getByLocation(place) {
-    fetch('interns.json')
+        .catch((error) => console.error('Error fetching data:', error));
+}
+getAll();
+
+
+const addFilterByLocation = [];
+var filterByLocation =[];
+// Adding all interns in that location to the array
+function getByLocation(place) {
+    fetch('./src/interns.json')
         .then((response) => response.json())
         .then((json) => {
             // Filter the interns based on the location
@@ -138,9 +128,9 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log(addFilterByLocation)
         })
         .catch((error) => console.error('Error fetching data:', error));
- }
- function removeByLocation(place) {
-    fetch('interns.json')
+}
+function removeByLocation(place) {
+    fetch('./src/interns.json')
         .then((response) => response.json())
         .then((json) => {
             let filterByLocation = [];
@@ -178,15 +168,15 @@ document.addEventListener("DOMContentLoaded", function() {
             removeByLocation(checkbox.value); // Remove interns from the array when unchecked
         }
     });
- });
- 
- 
- 
- 
- var filterByDepartment = [];
- const addFilterByDepartment = [];
- function getByDepartment(role) {
-    fetch('interns.json')
+});
+// Example usage
+// getByLocation("Gilroy")
+// getByLocation("Salinas")
+
+var filterByDepartment = [];
+const addFilterByDepartment = [];
+function getByDepartment(role) {
+    fetch('./src/interns.json')
         .then((response) => response.json())
         .then((json) => {
             // Filter the interns based on the location
@@ -211,9 +201,9 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log(addFilterByDepartment)
         })
         .catch((error) => console.error('Error fetching data:', error));
- }
- function removeByDepartment(role) {
-    fetch('interns.json')
+}
+function removeByDepartment(role) {
+    fetch('./src/interns.json')
         .then((response) => response.json())
         .then((json) => {
             // let filterByDepartment = [];
