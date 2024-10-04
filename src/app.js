@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
 
 
+
+
     const internPool = document.getElementById("internPool")
     const dropDownButtons = document.querySelectorAll(".dropdown-btn");
     const selectAll = document.getElementById("select-all")
@@ -13,8 +15,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const groupsContainer = document.getElementById("groups-container")
     const locationSwitch = document.getElementById("location-switch")
     const departmentSwitch = document.getElementById("department-switch")
- 
- 
     //function to click on export button and download
     document.getElementById("export-btn").addEventListener("click", function(){
         //make sure to target the container you need down below
@@ -28,8 +28,6 @@ document.addEventListener("DOMContentLoaded", function() {
         document.body.removeChild(link);
         });
     });
- 
- 
     //function for dropdown with checkbox
     dropDownButtons.forEach(button => {
         button.addEventListener("click", function(){
@@ -44,19 +42,19 @@ document.addEventListener("DOMContentLoaded", function() {
             dropDownContent.classList.toggle("show");
         });
     });
-
-const locations = document.getElementById("location");
-// getAll() function will be used when we select all the interns
-const names = [];
-
-function getAll() {
+ 
+ 
+ const locations = document.getElementById("location");
+ // getAll() function will be used when we select all the interns
+ const names = [];
+ 
+ 
+ function getAll() {
     fetch('./src/interns.json')
         .then((response) => response.json())
         .then((json) => {
             // initialise an array for names to be added to
             // const names = [];
- 
- 
             if (json.interns && Array.isArray(json.interns)) {
                 json.interns.forEach(intern => {
                     // if the names exist then push them onto the array
@@ -70,39 +68,33 @@ function getAll() {
                 });
                 console.log(names)
             }
- 
- 
             // Now that names array is populated, let's iterate over it
             const internPool = document.getElementById("internPool"); // Ensure there's an element with id "internPool"
             names.forEach(person => {
                 const li = document.createElement("li"); // Create a new li element
                 const label = document.createElement("label"); // Create a new label
                 const checkbox = document.createElement("input"); // Create a checkbox input
- 
- 
                 checkbox.type = "checkbox"; // Set the type to checkbox
                 checkbox.value = person.name; // Set the value of the checkbox to the intern's name
- 
- 
                 // Set the label text and append the checkbox to the label
                 label.textContent = person.name;
                 label.prepend(checkbox); // Add checkbox before the text
- 
- 
                 // Append the label to the li, and li to the ul
                 li.appendChild(label);
                 internPool.appendChild(li);
             });
         })
         .catch((error) => console.error('Error fetching data:', error));
-}
-getAll();
-
-
-const addFilterByLocation = [];
-var filterByLocation =[];
-// Adding all interns in that location to the array
-function getByLocation(place) {
+ }
+ getAll();
+ 
+ 
+ 
+ 
+ const addFilterByLocation = [];
+ var filterByLocation =[];
+ // Adding all interns in that location to the array
+ function getByLocation(place) {
     fetch('./src/interns.json')
         .then((response) => response.json())
         .then((json) => {
@@ -129,8 +121,8 @@ function getByLocation(place) {
             console.log(addFilterByLocation)
         })
         .catch((error) => console.error('Error fetching data:', error));
-}
-function removeByLocation(place) {
+ }
+ function removeByLocation(place) {
     fetch('./src/interns.json')
         .then((response) => response.json())
         .then((json) => {
@@ -144,7 +136,7 @@ function removeByLocation(place) {
                         department: intern.department
                 }));
             }
-           
+          
             // Remove the interns from addFilterByLocation
             filterByLocation.forEach(intern => {
                 const index = addFilterByLocation.findIndex(addIntern =>
@@ -155,8 +147,6 @@ function removeByLocation(place) {
                     addFilterByLocation.splice(index, 1); // Remove from array
                 }
             });
- 
- 
             console.log(addFilterByLocation);
         })
         .catch((error) => console.error('Error fetching data:', error));
@@ -169,12 +159,12 @@ function removeByLocation(place) {
             removeByLocation(checkbox.value); // Remove interns from the array when unchecked
         }
     });
-});
-
-
-var filterByDepartment = [];
-const addFilterByDepartment = [];
-function getByDepartment(role) {
+ });
+ 
+ 
+ var filterByDepartment = [];
+ const addFilterByDepartment = [];
+ function getByDepartment(role) {
     fetch('./src/interns.json')
         .then((response) => response.json())
         .then((json) => {
@@ -200,8 +190,8 @@ function getByDepartment(role) {
             console.log(addFilterByDepartment)
         })
         .catch((error) => console.error('Error fetching data:', error));
-}
-function removeByDepartment(role) {
+ }
+ function removeByDepartment(role) {
     fetch('./src/interns.json')
         .then((response) => response.json())
         .then((json) => {
@@ -215,7 +205,7 @@ function removeByDepartment(role) {
                         department: intern.department
                 }));
             }
-           
+          
             // Remove the interns from addFilterByLocation
             filterByDepartment.forEach(intern => {
                 const index = addFilterByDepartment.findIndex(addIntern=>
@@ -227,15 +217,11 @@ function removeByDepartment(role) {
                     addFilterByDepartment.splice(index, 1); // Remove from array
                 }
             });
- 
- 
             console.log(addFilterByDepartment);
         })
         .catch((error) => console.error('Error fetching data:', error));
  }
  /*
- 
- 
  */
  department.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
     checkbox.addEventListener("change", function() {
@@ -283,15 +269,11 @@ function removeByDepartment(role) {
         console.log(intersection);
     }
     const checkboxes = internPool.querySelectorAll('input[type="checkbox"]');
-           
+          
     checkboxes.forEach(checkbox => {
         const checkboxValue = checkbox.value; // Assuming the value is the intern's name
- 
- 
         // Check if this checkbox's value (intern name) exists in the intersection array
         const internIntersetion = intersection.find(intern => intern.name === checkboxValue);
- 
- 
         // Set the checkbox state based on whether the intern is in the intersection
         if (internIntersetion) {
             checkbox.checked = true;  // If an intern is found in the intersection, check the checkbox
@@ -299,20 +281,10 @@ function removeByDepartment(role) {
             checkbox.checked = false; // If no intern is found, uncheck the checkbox
         }    });
  }
- 
- 
  filter.addEventListener("click", function(){
     intersection.length = 0
     filterArray(addFilterByDepartment,addFilterByLocation)
- 
- 
  })
- 
- 
- 
- 
- 
- 
     //this is for selecting all the boxes of the interns
  selectAll.addEventListener("click",function(){
     const checkboxes = internPool.querySelectorAll('input[type="checkbox"]');
@@ -330,8 +302,8 @@ function removeByDepartment(role) {
  const finalArray = [];
  function addFinalArray(){
     const checkboxes = internPool.querySelectorAll('input[type="checkbox"]');
-    
-    for(let i = 0; i < names.length; i++){      
+   
+    for(let i = 0; i < names.length; i++){     
         if(checkboxes[i].checked && checkboxes[i].value === names[i].name){
             finalArray.push({
                             name: names[i].name,
@@ -340,7 +312,7 @@ function removeByDepartment(role) {
                         })
         }
     }
-    
+   
     console.log(finalArray)
  }
  
@@ -452,16 +424,10 @@ function showGroups() {
 }
 
  // function checkDiffDepartment(){
- 
- 
  // }
  // function checkDiffLocation(){
- 
- 
  // }
- 
- 
- function checkAccuracy(array){
+ function checkAccuracy(array) {
     var sameCounter = 0;
     var diffCounter = 0;
     console.log(array)
@@ -471,12 +437,15 @@ function showGroups() {
         // console.log(person1)
         if(person1 == person2){
             sameCounter++;
-        }else{
-            diffCounter ++;
+        } else {
+            diffCounter++;
         }
     }
-    console.log(sameCounter)
-    console.log(diffCounter)
+ 
+ 
+    // Log the counts
+    console.log("Same Department Pairs:", sameCounter);
+    console.log("Different Department Pairs:", diffCounter);
  }
  
  
