@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const outcomeBox = document.querySelector("outcome-box");
     const groupsContainer = document.getElementById("groups-container")
 
+
     //function to click on export button and download
     document.getElementById("export-btn").addEventListener("click", function(){
         //make sure to target the container you need down below
@@ -321,13 +322,19 @@ function shuffleArray(array) {
     }   
 }
 
+function showGroups() {
+    const outcomeID = document.getElementById("outcome-box");
+    outcomeID.style.visibility = "visible"
+}
+
 shuffle.addEventListener("click", function() {
     finalArray.length = 0;
     addFinalArray()
     shuffleArray(finalArray);
     displayPairs(finalArray);
-})
+    showGroups();
 
+})
 });
 
 

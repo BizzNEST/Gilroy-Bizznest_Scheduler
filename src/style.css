@@ -1,8 +1,26 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Optional: Ensures consistent sizing across elements */
+  }
+
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center; 
     padding: 0 20px; /* Add some horizontal padding */
+    background-color: #79CBA3;
+}
+
+.body-container {
+    margin: 20px;
+}
+
+.filter-container {
+    display: flex;
+    justify-content: space-between; /* Ensures space between the two groups of buttons */
+    align-items: center; /* Aligns the buttons vertically */
+    padding: 10px;
 }
 
 #logo {
@@ -20,24 +38,59 @@ nav {
     filter: brightness(0) invert(0);
 }
 
+#filter-heading {
+    font-family: Arial, sans-serif;
+}
+
+
+.Shuffle {
+    padding-bottom: 15px;
+    /* margin: 5px; */
+}
+
+.Shuffle button {
+    padding: 10px;
+    background-color: #79CBA3;
+    border: none;
+    border-radius: 5px;
+    margin: 3px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.Shuffle button:hover {
+    cursor: pointer;
+    background-color: #549b78;
+}
+
 .filteringDropdowns{
     display: flex;
 }
 
 .checkbox-dropdown{
-    width: 10vw;
+    /* width: 10vw; */
+    margin: 5px;
 }
 
 .dropdown-btn{
+    font-family: Arial, sans-serif;
+    font-weight: bold;
     margin: 0 1%;
+    margin-right: 10px;
     position: relative;
     display: inline-block;
+    background-color: #fff;
+    border: 2px solid black;
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
 }
 
 .dropdown-btn:hover, label:hover{
     cursor: pointer;
 }
 
+/* Come back to this later to style the button's dropdown */
 .dropdown-content{
     display: none;
     padding: 10px;
@@ -57,16 +110,65 @@ nav {
     flex-direction: column;
 }
 
+.box-container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
 .pool-box {
-    border: 2px solid black;
+    border: 2px solid rgb(167, 165, 165);
     width: fit-content;
+    border-radius: 10px;
     padding: 1em;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
 }
 
 .outcome-box {
     border: 2px solid black;
     padding: 1em;
 }
+
+.intern-pool {
+    font-family: Arial, Helvetica, sans-serif;
+}
 #internPool{
     list-style: none;
+    font-family: Arial, sans-serif;
 }
+
+.groups {
+    font-family: Arial, sans-serif;
+}
+
+#outcome-box {
+    visibility: hidden;
+    border: 2px solid rgb(167, 165, 165);
+    width: fit-content;
+    border-radius: 10px;
+    padding: 1em;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+.actions {
+    display: flex;
+    justify-content: right;
+}
+
+.actions button {
+background-color: #79CBA3;
+font-weight: bold;
+font-family: Arial, sans-serif;
+padding: 15px;
+border: none;
+border-radius: 5px;
+margin: 5px;
+}
+
+
+  .actions button:hover {
+    cursor: pointer;
+    background-color: #ba2c8e;
+    color: #ffffff;
+  }
