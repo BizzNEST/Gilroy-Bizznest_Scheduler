@@ -47,14 +47,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
 const locations = document.getElementById("location");
 // getAll() function will be used when we select all the interns
-var names = [];
+const names = [];
 
 function getAll() {
     fetch('./src/interns.json')
         .then((response) => response.json())
         .then((json) => {
             // initialise an array for names to be added to
-            const names = [];
+            // const names = [];
  
  
             if (json.interns && Array.isArray(json.interns)) {
@@ -68,6 +68,7 @@ function getAll() {
                         });
                     }
                 });
+                console.log(names)
             }
  
  
@@ -331,19 +332,18 @@ function removeByDepartment(role) {
  const finalArray = [];
  function addFinalArray(){
     const checkboxes = internPool.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach(checkbox=>{
-        const checkboxValue = checkbox.value;
-        const intern = intersection.find(intern => intern.name === checkboxValue);
- 
- 
-        if(checkbox.checked && checkbox.value){
+    
+    for(let i = 0; i < names.length; i++){
+       
+        if(checkboxes[i].checked && checkboxes[i].value === names[i].name){
             finalArray.push({
-                name : intern.name,
-                location : intern.location,
-                department : intern.department
-            })
+                            name: names[i].name,
+                            location : names[i].location,
+                            department : names[i].department
+                        })
         }
-    })
+    }
+    
     console.log(finalArray)
  }
  
@@ -430,7 +430,7 @@ function removeByDepartment(role) {
  
  shuffle.addEventListener("click", function() {
     finalArray.length = 0;
-    addFinalArray()
+    addFinalArray(names)
     shuffleArray(finalArray);
     displayPairs(finalArray);
     // checkAccuracy(finalArray);
