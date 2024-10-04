@@ -2,18 +2,23 @@ html, body {
     margin: 0;
     padding: 0;
     box-sizing: border-box; /* Optional: Ensures consistent sizing across elements */
-  }
+}
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center; 
     padding: 0 20px; /* Add some horizontal padding */
+    padding-top: 10px;
+    padding-bottom: 10px;
     background-color: #79CBA3;
+    background: -webkit-linear-gradient(to right, #79CBA3, #ba2c8da9);
+    background: linear-gradient(to right, #79CBA3, #ba2c8da9); 
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
 }
 
 .body-container {
-    margin: 20px;
+    margin: 20px;  
 }
 
 .filter-container {
@@ -25,18 +30,20 @@ nav {
 
 #logo {
     margin: 0 auto; /* Center logo */
+    filter: brightness(0) invert(0);
+    width: 40%;
+    height: auto;
+
 }
 
 #profile-icon {
     margin-left: auto; /* Align profile icon to the right */
     filter: brightness(0) invert(0);
-    width: auto;
-    height: 2em;
+    width: 100%;
+    height: auto;
 }
 
-#logo {
-    filter: brightness(0) invert(0);
-}
+
 
 #filter-heading {
     font-family: Arial, sans-serif;
@@ -44,6 +51,7 @@ nav {
 
 
 .Shuffle {
+    margin-top: -30px;
     padding-bottom: 15px;
     /* margin: 5px; */
 }
@@ -81,7 +89,7 @@ nav {
     position: relative;
     display: inline-block;
     background-color: #fff;
-    border: 2px solid black;
+    border: 2px solid rgb(136, 134, 134);
     border-radius: 5px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
 }
@@ -93,16 +101,25 @@ nav {
 /* Come back to this later to style the button's dropdown */
 .dropdown-content{
     display: none;
-    padding: 10px;
+    padding: 15px;
     border: 1px solid black;
+    border-radius: 10px;
     background-color: #E7E4E4;
-    width: 13%;
+    width: fit-content;
     position: absolute;
     z-index: 1;
+    background-color: #605e5e;
+    background: linear-gradient(to right, #605e5e, #767373, #605e5e);
+    color: #fff;
+    font-family: Arial, sans-serif;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
-.dropdown-content label{
-    border: 1px solid black;
+.dropdown-content label {
+    display: block; /* Make the label a block element */
+    width: 100%; /* Set the width to 100% of the parent .dropdown-content */
+    padding: 10px;
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
 }
 
 .dropdown-content.show{
@@ -129,6 +146,29 @@ nav {
     padding: 1em;
 }
 
+
+/* START: styling the javascript-made elements (tables and rows */
+/* Style the table in the outcome box */
+#outcome-box table {
+    width: 100%; /* Make the table span the full width of the outcome box */
+    border-collapse: collapse; /* Ensure that borders don't overlap */
+    margin-top: 10px; /* Add some space above the table */
+}
+
+/* Style each row */
+#outcome-box table tr {
+    border-bottom: 2px solid black; /* Black border for each row */
+}
+
+/* Style each table cell */
+#outcome-box table td {
+    padding: 10px; /* Add padding inside each cell */
+    text-align: center; /* Center the text in each cell */
+    font-size: 16px; /* Adjust font size */
+}
+
+/* END: styling the javascript-made elements (tables and rows */
+
 .intern-pool {
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -137,12 +177,12 @@ nav {
     font-family: Arial, sans-serif;
 }
 
-.groups {
+#groups {
+    visibility: hidden;
     font-family: Arial, sans-serif;
 }
 
 #outcome-box {
-    visibility: hidden;
     border: 2px solid rgb(167, 165, 165);
     width: fit-content;
     border-radius: 10px;
@@ -171,4 +211,87 @@ margin: 5px;
     cursor: pointer;
     background-color: #ba2c8e;
     color: #ffffff;
+  }
+
+
+  .switches {
+    font-family: Arial, sans-serif;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.switch-container {
+    display: flex;
+    flex-direction: column; /* Stack label on top of switch */
+    align-items: center;    /* Center items horizontally */
+    margin-right: 20px;     /* Add space between switches */
+}
+
+.switch-label {
+    margin-bottom: 5px; /* Space between label and switch */
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
   }

@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="src/style.css">
+    <script src="src/app.js"></script>
     <title>Digital Nest Randomizer</title>
 </head>
 <body>
     <nav>
         <!-- Digital Nest Logo -->
-         <img id="logo" src="assets/digital-nest-logo.png" alt="Logo">
+         <img id="logo" src="src/assets/digital-nest-logo.png" alt="Logo">
         <!-- Profile icon -->
         <ul>
                 <a href="#">
-                    <img id="profile-icon" src="assets/profile-icon.svg" alt="Icon" width="auto" height="auto">
+                    <img id="profile-icon" src="src/assets/profile-icon.svg" alt="Icon" width="auto" height="auto">
                 </a>
         </ul>
     </nav>
@@ -70,10 +71,32 @@
             </div> 
     </div>
 <!-- put buttons back here if theres an issue - Ian -->
+<!--  -->
+<div class="switches">
+    <!-- Rounded switch -->
+    <div class="switch-container">
+        <label class="switch-label">Department</label>
+        <label class="switch" id="department-switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+        </label>
+    </div>
+    <!-- Rounded switch -->
+    <div class="switch-container">
+        <label class="switch-label">Location</label>
+        <label class="switch" id="location-switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+        </label>
+    </div>
+</div>
+<!--  -->
+<!-- put buttons back here if theres an issue - Ian -->
 
 
     <div class="box-container">
-    <div class="intern-pool">
+    
+     <div class="intern-pool" >
         <!-- intern list -->
         <h3>Interns</h3>
         <div class="pool-box">
@@ -87,7 +110,7 @@
         <!-- Select and deselect functionality -->
      </div>
 
-     <div class="groups">
+     <div class="groups" id="groups">
     <!-- After randomization, new groups will appear here -->
         <h3>Selected Groups</h3>
         <div class="outcome-box" id="outcome-box">
@@ -100,9 +123,10 @@
         </div>
 
      </div>
-    </div>
 </div>
-    <script src="app.js"></script>
+
+    
+     <script src="app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 </body>
