@@ -390,45 +390,75 @@ function toggleLocDep(array){
  
  
  function displayPairs(interns) {
-    groupsContainer.innerHTML = ''; // Clear previous groups
-    if (interns.length % 2 == 0) {
+    const outcomeBox = document.getElementById('outcome-box'); // Get the outcome box div
+    outcomeBox.innerHTML = ''; // Clear previous content
+
+    const table = document.createElement("table"); // Create a table element
+
+    if (interns.length % 2 === 0) {
         for (let i = 0; i < interns.length; i += 2) {
-            const li = document.createElement("li");
-            const label = document.createElement("label");
-   
-            // Handle case where we have an odd number of interns
- 
- 
-            const partner1 = interns[i].name;
-            const partner2 = interns[i + 1].name; // if there's no second intern, show 'No Partner'
-   
-            label.textContent = `${partner1} & ${partner2}`;
-            li.appendChild(label);
-            groupsContainer.appendChild(li);
+            const row = document.createElement("tr"); // Create a new table row
+
+            const internA = document.createElement("td"); // Create a cell for the first intern
+            internA.innerHTML = "<strong>" + interns[i].name + "</strong>"; // Add intern name
+
+            const internB = document.createElement("td"); // Create a cell for the second intern
+            internB.innerHTML = "<strong>" + interns[i + 1].name + "</strong>"; // Add intern name
+
+            row.appendChild(internA);
+            row.appendChild(internB);
+            table.appendChild(row); // Append the row to the table
         }
-    }
-    else {
+    } else {
         for (let i = 0; i < interns.length - 3; i += 2) {
-            const li = document.createElement("li");
-            const label = document.createElement("label");
-   
-            // Handle case where we have an odd number of interns
-            const partner1 = interns[i].name;
-            const partner2 = interns[i + 1].name; // if there's no second intern, show 'No Partner'
- 
- 
-   
-            label.textContent = `${partner1} & ${partner2}`;
-            li.appendChild(label);
-            groupsContainer.appendChild(li);
+            const row = document.createElement("tr");
+
+            const internA = document.createElement("td");
+            internA.innerHTML = "<strong>" + interns[i].name + "</strong>";
+
+            const internB = document.createElement("td");
+            internB.innerHTML = "<strong>" + interns[i + 1].name + "</strong>";
+
+            row.appendChild(internA);
+            row.appendChild(internB);
+            table.appendChild(row);
+        }
+
+        const row = document.createElement("tr");
+
+        const internA = document.createElement("td");
+        internA.innerHTML = "<strong>" + interns[interns.length - 3].name + "</strong>";
+
+        const internB = document.createElement("td");
+        internB.innerHTML = "<strong>" + interns[interns.length - 2].name + "</strong>";
+
+        const internC = document.createElement("td");
+        internC.innerHTML = "<strong>" + interns[interns.length - 1].name + "</strong>";
+
+        row.appendChild(internA);
+        row.appendChild(internB);
+        row.appendChild(internC);
+        table.appendChild(row);
     }
-    const li = document.createElement("li");
-    const label = document.createElement("label");
-    label.textContent = `${interns[interns.length - 3].name} & ${interns[interns.length - 2].name} & ${interns[interns.length - 1].name}`;
-    li.appendChild(label);
-    groupsContainer.appendChild(li);
-    }  
- }
+
+    // Append the table to the outcomeBox
+    outcomeBox.appendChild(table);
+}
+
+
+function showGroups() {
+    const outcomeID = document.getElementById("groups");
+    outcomeID.style.visibility = "visible"
+}
+
+ // function checkDiffDepartment(){
+ 
+ 
+ // }
+ // function checkDiffLocation(){
+ 
+ 
+ // }
  
  
  function checkAccuracy(array){
@@ -457,10 +487,11 @@ function toggleLocDep(array){
     toggleLocDep(finalArray)
     displayPairs(finalArray);
     checkAccuracy(finalArray);
-
+    showGroups();
+    
+    // checkAccuracy(finalArray);
  })
- 
- 
+
  });
  
  

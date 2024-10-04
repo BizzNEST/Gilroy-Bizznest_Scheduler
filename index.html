@@ -20,9 +20,31 @@
         </ul>
     </nav>
 
+
+    <!-- Starts -->
+
     <div class="Filters">
         <!-- Implement drop down menu's -->
-        <h2>Filter</h2>
+        
+        <div class="filter-container">
+            <h2 id="filter-heading">Filter</h2>
+            <div class="actions">
+                <button id="shuffle-btn">Shuffle</button>
+                <!-- button to export the groups into a pdf document -->
+                 <button id="export-btn">Export</button>
+             </div>
+        </div>
+
+        <div class="body-container">
+
+        <div class="Shuffle">
+            <button id="select-all">Select All</button>
+            <button id = "deselect-all">Deselect All</button>
+            <button id = "filter">Filter</button>
+        </div>
+
+<!-- ENDS -->
+
         <div class="filteringDropdowns">
             <div class="checkbox-dropdown">
                 <!--department dropdown-->
@@ -35,7 +57,7 @@
                     <label><input type="checkbox" value="IT">IT</label>
                 </div>
             </div>
-    
+
             <div class="checkbox-dropdown">
                 <!--Location dropdown-->
                 <button class="dropdown-btn">Location  &#9660;</button>
@@ -46,30 +68,34 @@
                     <label><input type="checkbox" value="Stockton">Stockton</label>
                     <label><input type="checkbox" value="Watsonville">Watsonville</label>
                 </div>
-            </div>   
+            </div> 
     </div>
-
-    <div class="Shuffle">
-        <button id="shuffle-btn">Shuffle</button>
-        <button id="select-all">Select All</button>
-        <button id = "deselect-all">Deselect All</button>
-        <button id = "filter">Filter</button>
-    </div>
-    <div>
-        <!-- Rounded switch -->
-        <label> location</label>
-        <label class="switch" id = "location-switch">
+<!-- put buttons back here if theres an issue - Ian -->
+<!--  -->
+<div class="switches">
+    <!-- Rounded switch -->
+    <div class="switch-container">
+        <label class="switch-label">Department</label>
+        <label class="switch" id="department-switch">
             <input type="checkbox">
             <span class="slider round"></span>
         </label>
-      
-          <!-- Rounded switch -->
-        <label>department</label>
-         <label class="switch" id ="department-switch">
+    </div>
+    <!-- Rounded switch -->
+    <div class="switch-container">
+        <label class="switch-label">Location</label>
+        <label class="switch" id="location-switch">
             <input type="checkbox">
             <span class="slider round"></span>
-         </label>
+        </label>
     </div>
+</div>
+<!--  -->
+<!-- put buttons back here if theres an issue - Ian -->
+
+
+    <div class="box-container">
+    
      <div class="intern-pool" >
         <!-- intern list -->
         <h3>Interns</h3>
@@ -80,12 +106,11 @@
                 </label>
             </ul>
         </div>
-  
 
         <!-- Select and deselect functionality -->
      </div>
 
-     <div class="groups">
+     <div class="groups" id="groups">
     <!-- After randomization, new groups will appear here -->
         <h3>Selected Groups</h3>
         <div class="outcome-box" id="outcome-box">
@@ -98,13 +123,10 @@
         </div>
 
      </div>
-     <div class="export">
-        <!-- button to export the groups into a pdf document -->
-         <button id="export-btn">Export</button>
-     </div>
+</div>
 
     
-    
+     <script src="app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 </body>
