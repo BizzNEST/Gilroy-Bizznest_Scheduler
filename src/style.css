@@ -2,6 +2,18 @@ html, body {
     margin: 0;
     padding: 0;
     box-sizing: border-box; /* Optional: Ensures consistent sizing across elements */
+    background-image: url(./assets/1727303464162.jpeg);
+}
+
+.allMightyContainer{
+    font-weight: 700 !important;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    padding-bottom: 2%;
 }
 
 nav {
@@ -135,10 +147,18 @@ nav {
 
 .pool-box {
     border: 2px solid rgb(167, 165, 165);
-    width: fit-content;
-    border-radius: 10px;
+    width: 30vw;
+    border-radius: 20px;
     padding: 1em;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    background-color: white;
+    overflow: scroll;
+    height: 64vh;
+    padding-left: 4em;
+}
+
+.pool-box ul li{
+    padding-bottom: 25px;
 }
 
 .outcome-box {
@@ -171,6 +191,8 @@ nav {
 
 .intern-pool {
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.3em;
+    text-decoration: underline;
 }
 #internPool{
     list-style: none;

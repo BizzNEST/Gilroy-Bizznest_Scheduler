@@ -337,6 +337,28 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     return array;
 }
+
+function assignDiffLocation(array) {
+    // Step 1: Shuffle the array to introduce randomness
+    shuffleArray(array);
+
+    // Step 2: Ensure no two consecutive elements have the same department
+    for (let i = 0; i < array.length - 1; i++) {
+        if (array[i].location === array[i + 1].location) {
+            // Find the next available element with a different department
+            for (let j = i + 2; j < array.length; j++) {
+                if (array[j].location !== array[i].location) {
+                    // Swap the elements
+                    [array[i + 1], array[j]] = [array[j], array[i + 1]];
+                    break;
+                }
+            }
+        }
+    }
+    return array;
+}
+
+
  function shuffleArray(array) {
     for (let i = 0; i < array.length - 1; i++) {
         const j = Math.floor(Math.random() * (array.length - i)) + i; // Random index from i to end
@@ -353,6 +375,10 @@ function toggleLocDep(array){
 
     if (departmentChecked.checked) {
         assignDiffDepartment(array); // Ensure different departments
+    }else if(locationChecked.checked){
+        assignDiffLocation(array);
+    }else{
+        return array;
     }
 
     // Add location-specific logic here if needed in the future
@@ -432,8 +458,8 @@ function showGroups() {
     var diffCounter = 0;
     console.log(array)
     for(let i = 0; i < array.length-1; i+=2){
-        person1 = array[i].department
-        person2 = array[i+1].department
+        person1 = array[i].location
+        person2 = array[i+1].location
         // console.log(person1)
         if(person1 == person2){
             sameCounter++;
