@@ -410,6 +410,25 @@ function assignDiffLocation(array) {
     return array;
 }
 
+function assignDiffLocationDepartment(array) {
+    // Step 1: Shuffle the array to introduce randomness
+    shuffleArray(array);
+
+    // Step 2: Ensure no two consecutive elements have the same department
+    for (let i = 0; i < array.length - 1; i++) {
+        if (array[i].location === array[i + 1].location && array[i].department === array[i + 1].department) {
+            // Find the next available element with a different department
+            for (let j = i + 2; j < array.length; j++) {
+                if (array[j].location !== array[i].location && array[j].department !== array[i].department) {
+                    // Swap the elements
+                    [array[i + 1], array[j]] = [array[j], array[i + 1]];
+                    break;
+                }
+            }
+        }
+    }
+    return array;
+}
 
 //----------------------------------------------------------------------------------------------------------------------------------------
 
@@ -430,8 +449,9 @@ This will shuffle the array and for randmoized pairing
 function toggleLocDep(array){
     const locationChecked = locationSwitch.querySelector('input[type="checkbox"]');
     const departmentChecked = departmentSwitch.querySelector('input[type="checkbox"]');
-
-    if (departmentChecked.checked) {
+    if(departmentChecked.checked && locationChecked.checked ){
+        assignDiffLocationDepartment(array)
+    }else if (departmentChecked.checked) {
         assignDiffDepartment(array); // Ensure different departments
     }else if(locationChecked.checked){
         assignDiffLocation(array);
@@ -530,10 +550,9 @@ adds the count and checks the accuracy of the pairs from different departments a
     var diffCounter = 0;
     console.log(array)
     for(let i = 0; i < array.length-1; i+=2){
-        person1 = array[i].location
-        person2 = array[i+1].location
-        // console.log(person1)
-        if(person1 == person2){
+        person1 = array[i]
+        person2 = array[i+1]
+        if(person1.location == person2.location && person1.department == person2.department){
             sameCounter++;
         } else {
             diffCounter++;
