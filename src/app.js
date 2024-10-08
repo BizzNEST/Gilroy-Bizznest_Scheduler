@@ -17,8 +17,18 @@ document.addEventListener("DOMContentLoaded", function() {
     const departmentSwitch = document.getElementById("department-switch")
     //function to click on export button and download
     document.getElementById("export-btn").addEventListener("click", function(){
+        let outcomeBox = document.getElementById("outcome-box");
+
+        let originalOverflow = outcomeBox.style.overflow;
+        let originalHeight = outcomeBox.style.height;
+
+        outcomeBox.style.overflow = "visible";
+        outcomeBox.style.height = "auto";
+
         //make sure to target the container you need down below
         html2canvas(document.getElementById("outcome-box")).then(function(canvas){
+            outcomeBox.style.overflow = originalOverflow;
+            outcomeBox.style.height = originalHeight;
             let imgData = canvas.toDataURL("image/png");
             let link = document.createElement('a');
             link.href = imgData;
