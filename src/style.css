@@ -98,7 +98,7 @@ nav {
     margin: 5px;
 }
 
-.dropdown-btn{
+.dropdown-btn {
     font-family: Arial, sans-serif;
     font-weight: bold;
     font-size:medium;
@@ -171,7 +171,7 @@ nav {
     background-color: white;
     overflow: scroll;
     height: 64vh;
-    padding-left: 4em;
+    padding-left: 1em;
 }
 
 .pool-box ul li{
@@ -218,6 +218,8 @@ nav {
 #internPool{
     list-style: none;
     font-family: Arial, sans-serif;
+    text-align: start;
+    padding-left: 0;
 }
 
 #groups {
@@ -294,7 +296,6 @@ margin: 5px;
     width: 0;
     height: 0;
   }
-  
   /* The slider */
   .slider {
     position: absolute;
