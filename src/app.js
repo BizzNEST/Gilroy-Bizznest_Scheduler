@@ -577,5 +577,3 @@ adds the count and checks the accuracy of the pairs from different departments a
      })
 
  });
- 
- 
