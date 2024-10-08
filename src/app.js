@@ -510,7 +510,11 @@ This function will display the pairs
 
 function showGroups() {
     const outcomeID = document.getElementById("groups");
-    outcomeID.style.visibility = "visible"
+    outcomeID.style.visibility = "visible";
+
+    const container = document.querySelector('.outer-box-container');
+    container.classList.add('center-boxes');
+    console.log(container.classList);
 }
 
 
