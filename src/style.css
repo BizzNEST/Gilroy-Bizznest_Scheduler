@@ -2,6 +2,18 @@ html, body {
     margin: 0;
     padding: 0;
     box-sizing: border-box; /* Optional: Ensures consistent sizing across elements */
+    background-image: url(./assets/1727303464162.jpeg);
+}
+
+.allMightyContainer{
+    font-weight: 700 !important;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    padding-bottom: 2%;
 }
 
 nav {
@@ -135,15 +147,27 @@ nav {
 
 .pool-box {
     border: 2px solid rgb(167, 165, 165);
-    width: fit-content;
-    border-radius: 10px;
+    width: 25vw;
+    border-radius: 20px;
     padding: 1em;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    background-color: white;
+    overflow: scroll;
+    height: 64vh;
+    padding-left: 4em;
+}
+
+.pool-box ul li{
+    padding-bottom: 15px;
 }
 
 .outcome-box {
     border: 2px solid black;
     padding: 1em;
+    background-color: white;
+    height: 64vh;
+    overflow: scroll;
+    padding-top: 10px;
 }
 
 
@@ -164,13 +188,15 @@ nav {
 #outcome-box table td {
     padding: 10px; /* Add padding inside each cell */
     text-align: center; /* Center the text in each cell */
-    font-size: 16px; /* Adjust font size */
+    font-size: 1em; /* Adjust font size */
 }
 
 /* END: styling the javascript-made elements (tables and rows */
 
 .intern-pool {
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    text-decoration: underline;
 }
 #internPool{
     list-style: none;
@@ -180,12 +206,13 @@ nav {
 #groups {
     visibility: hidden;
     font-family: Arial, sans-serif;
+    font-size: 1.17em;
 }
 
 #outcome-box {
     border: 2px solid rgb(167, 165, 165);
-    width: fit-content;
-    border-radius: 10px;
+    width: 50vw;
+    border-radius: 20px;
     padding: 1em;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
 }
