@@ -342,3 +342,18 @@ margin: 5px;
   .slider.round:before {
     border-radius: 50%;
   }
+
+  @media only screen and (max-width: 480px){
+    .box-container{
+        flex-direction: column;
+    }
+    #internPool{
+        margin-left: -10vw;
+    }
+    .pool-box{
+        width: 65vw;
+    }
+    #outcome-box{
+        width: 79vw;
+    }
+  }
