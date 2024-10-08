@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const selectAll = document.getElementById("select-all")
     const deselectAll = document.getElementById("deselect-all")
     const location = document.getElementById("location")
+    // const locations = document.getElementById("location");
     const department = document.getElementById("department")
     const filter = document.getElementById("filter")
     const shuffle = document.getElementById("shuffle-btn")
@@ -52,13 +53,13 @@ document.addEventListener("DOMContentLoaded", function() {
             dropDownContent.classList.toggle("show");
         });
     });
+ //-------------------------------------------------------------------------------------------------------------------------------------
  
- 
- const locations = document.getElementById("location");
- // getAll() function will be used when we select all the interns
+ /*
+  getAll() function will be used when we select all the interns
+ */
+
  const names = [];
- 
- 
  function getAll() {
     fetch('./src/interns.json')
         .then((response) => response.json())
@@ -97,8 +98,9 @@ document.addEventListener("DOMContentLoaded", function() {
         .catch((error) => console.error('Error fetching data:', error));
  }
  getAll();
+
  
- 
+//------------------------------------------------------------------------------------------------------------------------------------------
  
  
  const addFilterByLocation = [];
@@ -132,6 +134,9 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch((error) => console.error('Error fetching data:', error));
  }
+ /*
+ This removes elements from the array when a checkbox is unchecked
+ */
  function removeByLocation(place) {
     fetch('./src/interns.json')
         .then((response) => response.json())
@@ -170,10 +175,16 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
  });
- 
+
+
+ //-------------------------------------------------------------------------------------------------------------------------------------------
  
  var filterByDepartment = [];
  const addFilterByDepartment = [];
+ /*
+This function will get all interns from a specific department
+and will add everyone from that department to an array
+ */
  function getByDepartment(role) {
     fetch('./src/interns.json')
         .then((response) => response.json())
@@ -201,6 +212,10 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch((error) => console.error('Error fetching data:', error));
  }
+ /*
+ When the box is unchecked this will automatically get the interns 
+ from the specified department and will remove them from the array.
+ */
  function removeByDepartment(role) {
     fetch('./src/interns.json')
         .then((response) => response.json())
@@ -231,8 +246,7 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch((error) => console.error('Error fetching data:', error));
  }
- /*
- */
+ 
  department.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
     checkbox.addEventListener("change", function() {
         if (checkbox.checked) {
@@ -242,6 +256,11 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
  });
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------
+
+
  /*
  The function gets the intersection of the department and location arrays
  */
@@ -309,6 +328,14 @@ document.addEventListener("DOMContentLoaded", function() {
         checkbox.checked = false
     })
  })
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+
+/*
+Here we are adding all the filtered items into the final array
+*/
  const finalArray = [];
  function addFinalArray(){
     const checkboxes = internPool.querySelectorAll('input[type="checkbox"]');
@@ -327,7 +354,14 @@ document.addEventListener("DOMContentLoaded", function() {
  }
  
  
- 
+
+//--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+/*
+When the boxes are checked we want to make the arrays where no 2 elements are from the same  
+the same department
+*/
  function assignDiffDepartment(array) {
     // Step 1: Shuffle the array to introduce randomness
     shuffleArray(array);
@@ -348,6 +382,14 @@ document.addEventListener("DOMContentLoaded", function() {
     return array;
 }
 
+
+//-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+/*
+When the boxes are checked we want to make the arrays where no 2 elements are from the same  
+the same department
+*/
 function assignDiffLocation(array) {
     // Step 1: Shuffle the array to introduce randomness
     shuffleArray(array);
@@ -369,6 +411,12 @@ function assignDiffLocation(array) {
 }
 
 
+//----------------------------------------------------------------------------------------------------------------------------------------
+
+
+/*
+This will shuffle the array and for randmoized pairing
+*/
  function shuffleArray(array) {
     for (let i = 0; i < array.length - 1; i++) {
         const j = Math.floor(Math.random() * (array.length - i)) + i; // Random index from i to end
@@ -396,7 +444,13 @@ function toggleLocDep(array){
 }
 
  
- 
+
+//-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+ /*
+This function will display the pairs
+*/
  function displayPairs(interns) {
     const outcomeBox = document.getElementById('outcome-box'); // Get the outcome box div
     outcomeBox.innerHTML = ''; // Clear previous content
@@ -459,10 +513,14 @@ function showGroups() {
     outcomeID.style.visibility = "visible"
 }
 
- // function checkDiffDepartment(){
- // }
- // function checkDiffLocation(){
- // }
+
+
+//-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+/*
+adds the count and checks the accuracy of the pairs from different departments and locations
+*/
  function checkAccuracy(array) {
     var sameCounter = 0;
     var diffCounter = 0;
@@ -493,9 +551,7 @@ function showGroups() {
     displayPairs(finalArray);
     checkAccuracy(finalArray);
     showGroups();
-    
-    // checkAccuracy(finalArray);
- })
+     })
 
  });
  
