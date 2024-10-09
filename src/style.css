@@ -160,7 +160,10 @@ nav {
     
 }
 
-
+.interPool-wrap{
+    overflow: hidden;
+    border-radius: 20px;
+}
 
 .pool-box {
     border: 2px solid rgb(167, 165, 165);
@@ -169,7 +172,7 @@ nav {
     padding: 1em;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
     background-color: white;
-    overflow: scroll;
+    overflow-y: scroll;
     height: 64vh;
     padding-left: 1em;
 }
@@ -178,12 +181,17 @@ nav {
     padding-bottom: 15px;
 }
 
+.outcome-wrapper{
+    overflow: hidden;
+    border-radius: 20px;
+}
+
 .outcome-box {
     border: 2px solid black;
     padding: 1em;
     background-color: white;
     height: 64vh;
-    overflow: scroll;
+    overflow-y: scroll;
     padding-top: 10px;
 }
 
