@@ -1,3 +1,21 @@
+@keyframes runAway {
+  0% {
+    transform: translateX(0);  /* Starts at its original position */
+  }
+  50% {
+    transform: translateX(200px);  /* Moves halfway, indicating it's starting to "run" */
+  }
+  100% {
+    transform: translateX(1000px);  /* Runs completely off the screen */
+  }
+  50% {
+      transform: translateX(-500px);  /* Moves halfway, indicating it's starting to "run" */
+    }
+    0% {
+      transform: translateX(0);  /* Starts at its original position */
+    }
+}
+
 html, body {
     margin: 0;
     padding: 0;
@@ -79,20 +97,14 @@ video {
     background-color: #ba2c8e
 }
 
-@keyframes runAway {
-    0% {
-      transform: translateX(0);  /* Starts at its original position */
-    }
-    50% {
-      transform: translateX(200px);  /* Moves halfway, indicating it's starting to "run" */
-    }
-    100% {
-      transform: translateX(1000px);  /* Runs completely off the screen */
-    }
-    50% {
-        transform: translateX(-500px);  /* Moves halfway, indicating it's starting to "run" */
-      }
-      0% {
-        transform: translateX(0);  /* Starts at its original position */
-      }
+@media only screen and (max-width: 480px){
+  .video-background a{
+    position: absolute;
+    left: 26.5%;
+    top: 40%;
   }
+  .DN-Logo img{
+    width: 75vw;
+    padding-top: 8%;
+  }
+}

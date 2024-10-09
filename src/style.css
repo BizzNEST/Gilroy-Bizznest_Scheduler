@@ -345,14 +345,35 @@ margin: 5px;
   }
 
   @media only screen and (max-width: 480px){
+    #logo{
+        width: 100%;
+    }
+    .filter-container{
+        justify-content: center;
+    }
+    #filter-heading{
+        display: none;
+    }
+    .Shuffle{
+        display: flex;
+        justify-content: center;
+        padding-bottom: 0;
+    }
+    .filteringDropdowns{
+        justify-content: center;
+    }
+    .switches{
+        justify-content: center;
+        margin-top: 0;
+    }
     .box-container{
         flex-direction: column;
     }
     #internPool{
-        margin-left: -10vw;
+        padding: 0 11vw;
     }
     .pool-box{
-        width: 65vw;
+        width: 78vw;
     }
     #outcome-box{
         width: 79vw;
