@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 
 
-
-
     const internPool = document.getElementById("internPool")
     const dropDownButtons = document.querySelectorAll(".dropdown-btn");
     const selectAll = document.getElementById("select-all")
