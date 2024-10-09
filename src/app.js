@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
  const names = [];
  function getAll() {
-    fetch('./src/interns.json')
+    fetch('./interns.json')
         .then((response) => response.json())
         .then((json) => {
             // initialise an array for names to be added to
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function() {
  var filterByLocation =[];
  // Adding all interns in that location to the array
  function getByLocation(place) {
-    fetch('./src/interns.json')
+    fetch('./interns.json')
         .then((response) => response.json())
         .then((json) => {
             // Filter the interns based on the location
@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function() {
  This removes elements from the array when a checkbox is unchecked
  */
  function removeByLocation(place) {
-    fetch('./src/interns.json')
+    fetch('./interns.json')
         .then((response) => response.json())
         .then((json) => {
             let filterByLocation = [];
@@ -184,7 +184,7 @@ This function will get all interns from a specific department
 and will add everyone from that department to an array
  */
  function getByDepartment(role) {
-    fetch('./src/interns.json')
+    fetch('./interns.json')
         .then((response) => response.json())
         .then((json) => {
             // Filter the interns based on the location
@@ -215,7 +215,7 @@ and will add everyone from that department to an array
  from the specified department and will remove them from the array.
  */
  function removeByDepartment(role) {
-    fetch('./src/interns.json')
+    fetch('./interns.json')
         .then((response) => response.json())
         .then((json) => {
             // let filterByDepartment = [];
