@@ -194,7 +194,13 @@ nav {
     overflow-y: scroll;
     padding-top: 10px;
 }
-
+#display-percentage{
+    display:block;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 1.2em;
+    margin-top: auto;
+}
 
 /* START: styling the javascript-made elements (tables and rows */
 /* Style the table in the outcome box */
@@ -385,5 +391,8 @@ margin: 5px;
     }
     #outcome-box{
         width: 79vw;
+    }
+    #display-percentage{
+        text-align: center;
     }
   }

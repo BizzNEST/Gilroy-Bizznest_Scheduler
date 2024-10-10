@@ -10,13 +10,14 @@ document.addEventListener("DOMContentLoaded", function() {
     const department = document.getElementById("department")
     const filter = document.getElementById("filter")
     const shuffle = document.getElementById("shuffle-btn")
-    const outcomeBox = document.querySelector("outcome-box");
+    const outcomeBox = document.getElementById("outcome-box");
     const groupsContainer = document.getElementById("groups-container")
     const locationSwitch = document.getElementById("location-switch")
     const departmentSwitch = document.getElementById("department-switch")
+    const groups = document.getElementById('groups')
+    const displayPercentage = document.getElementById('display-percentage')
     //function to click on export button and download
     document.getElementById("export-btn").addEventListener("click", function(){
-        let outcomeBox = document.getElementById("outcome-box");
 
         let originalOverflow = outcomeBox.style.overflow;
         let originalHeight = outcomeBox.style.height;
@@ -449,10 +450,13 @@ function toggleLocDep(array){
     const departmentChecked = departmentSwitch.querySelector('input[type="checkbox"]');
     if(departmentChecked.checked && locationChecked.checked ){
         assignDiffLocationDepartment(array)
+        checkAccuracyLocation_Deperatment(array)
     }else if (departmentChecked.checked) {
-        assignDiffDepartment(array); // Ensure different departments
+        assignDiffDepartment(array); 
+        checkAccuracyDepartment(array)
     }else if(locationChecked.checked){
         assignDiffLocation(array);
+        checkAccuracyLocation(array);
     }else{
         return array;
     }
@@ -470,7 +474,6 @@ function toggleLocDep(array){
 This function will display the pairs
 */
  function displayPairs(interns) {
-    const outcomeBox = document.getElementById('outcome-box'); // Get the outcome box div
     outcomeBox.innerHTML = ''; // Clear previous content
 
     const table = document.createElement("table"); // Create a table element
@@ -543,14 +546,75 @@ function showGroups() {
 /*
 adds the count and checks the accuracy of the pairs from different departments and locations
 */
- function checkAccuracy(array) {
+function checkAccuracyLocation_Deperatment(array) {
     var sameCounter = 0;
     var diffCounter = 0;
+    var totalPairs = Math.floor(array.length / 2);
+    console.log(array);
+
+    for (let i = 0; i < array.length - 1; i += 2) {
+        const person1 = array[i];
+        const person2 = array[i + 1];
+
+        if (person1.location != person2.location && person1.department != person2.department) {
+            diffCounter++;
+        } else {
+            sameCounter++;
+        }
+    }
+
+    var percentage = Math.floor((diffCounter / totalPairs) * 100);
+
+    console.log("Same Location and Department Pairs:", sameCounter);
+    console.log("Different Location and Department Pairs:", diffCounter);
+    console.log("Percentage Different Locations and Department:", percentage);
+    displayPercentage.innerHTML= "";
+    const showPercentage = document.createElement("p");
+    showPercentage.innerHTML = `Percentage Different Locations and Department: ${percentage}%`;
+    displayPercentage.appendChild(showPercentage);
+}
+
+
+ function checkAccuracyLocation(array) {
+    var sameCounter = 0;
+    var diffCounter = 0;
+    var totalPairs = Math.floor(array.length / 2);
+
     console.log(array)
     for(let i = 0; i < array.length-1; i+=2){
         person1 = array[i]
         person2 = array[i+1]
-        if(person1.location == person2.location && person1.department == person2.department){
+        if(person1.location == person2.location ){
+            sameCounter++;
+        } else {
+            diffCounter++;
+        }
+    }
+ 
+    var percentage = Math.floor((diffCounter/totalPairs)*100)
+
+    console.log("Same Location Pairs:", sameCounter);
+    console.log("Different Location Pairs:", diffCounter);
+    console.log("Percentage Different Location Pairs", percentage)
+
+
+    displayPercentage.innerHTML = '';
+    const showPercentage = document.createElement("p");
+    
+    showPercentage.innerHTML = `Percentage Different Locations: ${percentage}%`;
+    displayPercentage.appendChild(showPercentage);
+ }
+ 
+ function checkAccuracyDepartment(array) {
+    var sameCounter = 0;
+    var diffCounter = 0;
+    var totalPairs = Math.floor(array.length / 2);
+
+    console.log(array)
+    for(let i = 0; i < array.length-1; i+=2){
+        person1 = array[i]
+        person2 = array[i+1]
+        if(person1.department == person2.department){
             sameCounter++;
         } else {
             diffCounter++;
@@ -558,10 +622,18 @@ adds the count and checks the accuracy of the pairs from different departments a
     }
  
  
-    // Log the counts
+    var percentage = Math.floor((diffCounter/totalPairs)*100)
     console.log("Same Department Pairs:", sameCounter);
     console.log("Different Department Pairs:", diffCounter);
+    console.log("Percentage Different Department Pairs", percentage) 
+    displayPercentage.innerHTML= "";
+    const showPercentage = document.createElement("p");
+    showPercentage.innerHTML = `Percentage Different Department: ${percentage}%`;
+    displayPercentage.appendChild(showPercentage);
+    // groups.removeChild(showPercentage)
+
  }
+ 
  
  
  shuffle.addEventListener("click", function() {
@@ -570,7 +642,6 @@ adds the count and checks the accuracy of the pairs from different departments a
     shuffleArray(finalArray);
     toggleLocDep(finalArray)
     displayPairs(finalArray);
-    checkAccuracy(finalArray);
     showGroups();
      })
 
