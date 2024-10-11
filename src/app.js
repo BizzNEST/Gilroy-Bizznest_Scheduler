@@ -548,6 +548,8 @@ function showGroups() {
     console.log(container.classList);
 }
 
+
+
 //-----------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -654,3 +656,4 @@ function checkAccuracyLocation_Deperatment(array) {
      })
 
  });
+
