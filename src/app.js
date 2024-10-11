@@ -38,21 +38,31 @@ document.addEventListener("DOMContentLoaded", function() {
         document.body.removeChild(link);
         });
     });
-    //function for dropdown with checkbox
-    dropDownButtons.forEach(button => {
-        button.addEventListener("click", function(){
-            //gets the next element in the HTML after button is clicked
-            const dropDownContent = this.nextElementSibling;
-            dropDownButtons.forEach(btn => {
-                const otherDropDownContent = btn.nextElementSibling;
-                if(otherDropDownContent !== dropDownContent){
-                    otherDropDownContent.classList.remove("show");
-                }
-            });
-            dropDownContent.classList.toggle("show");
-        });
+    // Function to toggle the dropdown
+dropDownButtons.forEach(button => {
+    button.addEventListener("click", function (event) {
+        event.stopPropagation(); // Prevent the document click event from firing
+        const dropDownContent = this.nextElementSibling;
+        dropDownContent.classList.toggle("show");
     });
- //-------------------------------------------------------------------------------------------------------------------------------------
+});
+
+// Prevent dropdown from closing when clicking inside its content
+document.querySelectorAll(".dropdown-content").forEach(dropdown => {
+    dropdown.addEventListener("click", function(event) {
+        event.stopPropagation(); // Prevents closing the dropdown when clicking inside it
+    });
+});
+
+// Close dropdowns when clicking anywhere outside
+document.addEventListener("click", function () {
+    document.querySelectorAll(".dropdown-content.show").forEach(dropdown => {
+        dropdown.classList.remove("show");
+    });
+});
+
+    
+//-------------------------------------------------------------------------------------------------------------------------------------
  
  /*
   getAll() function will be used when we select all the interns
