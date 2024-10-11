@@ -1,11 +1,11 @@
 html, body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Optional: Ensures consistent sizing across elements */
+    box-sizing: border-box;
     background-image: url(./assets/background.png);
 }
 
-.allMightyContainer{
+.allMightyContainer {
     font-weight: 700 !important;
     display: flex;
     flex-direction: column;
@@ -20,7 +20,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center; 
-    padding: 0 20px; /* Add some horizontal padding */
+    padding: 0 20px;
     padding-top: 10px;
     padding-bottom: 10px;
     background-color: #79CBA3;
@@ -35,8 +35,8 @@ nav {
 
 .filter-container {
     display: flex;
-    justify-content: space-between; /* Ensures space between the two groups of buttons */
-    align-items: center; /* Aligns the buttons vertically */
+    justify-content: space-between;
+    align-items: center;
     padding: 10px;
 }
 
@@ -46,42 +46,48 @@ nav {
 }
 
 #logo {
-    margin: 0 auto; /* Center logo */
+    margin: 0 auto;
     width: 30%;
     min-height: 8vh;
     height: auto;
 }
 
-/* #profile-icon {
-    margin-left: auto;
-    filter: brightness(0) invert(0);
-    width: 100%;
-    height: auto;
-} */
-
 #filter-heading {
     font-family: Arial, sans-serif;
 }
 
-
 .Shuffle {
     margin-top: -30px;
     padding-bottom: 15px;
-    /* margin: 5px; */
+    display: flex;
+    justify-content: left;
+    animation: slideInShuffle 0.4s forwards ease-in; /* Unique animation for Shuffle */
 }
 
 .Shuffle button {
-    padding: 15px;
+    padding-left: 2%;
+    padding-right: 2%;
     background-color: #79CBA3;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
+    height: 40px;
+    width: fit-content;
     margin: 3px;
     font-family: Arial, sans-serif;
-    font-weight: bold;
     font-size: large;
     cursor: pointer;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    transform: translateX(-100px); /* Start off-screen to the left */
+    animation: slideInShuffle 1s forwards ease-in;
+}
 
+@keyframes slideInShuffle {
+    from {
+        transform: translateX(-300px);
+    }
+    to {
+        transform: translateX(0);
+    }
 }
 
 .Shuffle button:hover {
@@ -89,35 +95,53 @@ nav {
     background-color: #549b78;
 }
 
-.filteringDropdowns{
+.filteringDropdowns {
     display: flex;
 }
 
-.checkbox-dropdown{
-    /* width: 10vw; */
+.checkbox-dropdown {
     margin: 5px;
 }
 
 .dropdown-btn{
     font-family: Arial, sans-serif;
-    font-weight: bold;
-    font-size:medium;
+    color: black;
+    border: 1px solid grey;
+    padding: auto;
+    font-size: large;
     margin: 0 1%;
     margin-right: 10px;
     position: relative;
     display: inline-block;
     background-color: #fff;
-    border: 2px solid rgb(136, 134, 134);
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    transform: translateX(-300%);
+    animation: slideInLeft 1s forwards ease-in;
 }
 
-.dropdown-btn:hover, label:hover{
+/* .dropdown-btn:nth-child(1) {
+    animation-delay: 0.6s;
+}
+
+.dropdown-btn:nth-child(2) {
+    animation-delay: 0.6s;
+} */
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-300%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.dropdown-btn:hover, label:hover {
     cursor: pointer;
 }
 
-/* Come back to this later to style the button's dropdown */
-.dropdown-content{
+.dropdown-content {
     display: none;
     padding: 20px;
     border: 1px solid black;
@@ -134,13 +158,13 @@ nav {
 }
 
 .dropdown-content label {
-    display: block; /* Make the label a block element */
-    width: 100%; /* Set the width to 100% of the parent .dropdown-content */
+    display: block;
+    width: 100%;
     padding: 10px;
-    box-sizing: border-box; /* Ensure padding and border are included in the width */
+    box-sizing: border-box;
 }
 
-.dropdown-content.show{
+.dropdown-content.show {
     display: flex;
     flex-direction: column;
 }
@@ -149,6 +173,7 @@ nav {
     display: grid;
     justify-content: center;
 }
+
 .box-container {
     display: flex;
     justify-content: flex-start;
@@ -157,10 +182,9 @@ nav {
 
 .box-container h3 {
     color: white;
-    
 }
 
-.interPool-wrap{
+.interPool-wrap {
     overflow: hidden;
     border-radius: 20px;
 }
@@ -177,11 +201,11 @@ nav {
     padding-left: 0;
 }
 
-.pool-box ul li{
+.pool-box ul li {
     padding-bottom: 15px;
 }
 
-.outcome-wrapper{
+.outcome-wrapper {
     overflow: hidden;
     border-radius: 20px;
 }
@@ -194,44 +218,31 @@ nav {
     overflow-y: scroll;
     padding-top: 10px;
 }
-#display-percentage{
-    display:block;
+
+#display-percentage {
+    display: block;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     font-size: 1.2em;
     margin-top: auto;
 }
 
-/* START: styling the javascript-made elements (tables and rows */
-/* Style the table in the outcome box */
-#outcome-box table {
-    width: 100%; /* Make the table span the full width of the outcome box */
-    border-collapse: collapse; /* Ensure that borders don't overlap */
-    margin-top: 10px; /* Add some space above the table */
-}
-
-/* Style each row */
-#outcome-box table tr {
-    border-bottom: 2px solid black; /* Black border for each row */
-}
-
-/* Style each table cell */
-#outcome-box table td {
-    padding: 10px; /* Add padding inside each cell */
-    text-align: center; /* Center the text in each cell */
-    font-size: 1em; /* Adjust font size */
-}
-
-/* END: styling the javascript-made elements (tables and rows */
-
-.intern-pool {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.2em;
-}
-
-#internPool{
+#internPool {
     list-style: none;
     font-family: Arial, sans-serif;
+    text-align: start;
+    padding-left: 0;
+    transform: translateX(-300%);
+    animation: slideInInterns 1s forwards ease-in;
+}
+
+@keyframes slideInInterns {
+    from {
+        transform: translateX(-200%);
+    }
+    to {
+        transform: translateX(0);
+    }
 }
 
 #groups {
@@ -248,24 +259,34 @@ nav {
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
 }
 
-
-
 .actions {
     display: flex;
-    justify-content: right;
+    justify-content: flex-end;
+    animation: fadeInActions 1s forwards ease-in;
 }
 
 .actions button {
-background-color: #79CBA3;
-font-weight: bold;
-font-family: Arial, sans-serif;
-font-size: large;
-padding: 18px;
-border: none;
-border-radius: 5px;
-margin: 5px;
+    background-color: #79CBA3;
+    height: 40px;
+    width: 100px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: large;
+    border: none;
+    border-radius: 20px;
+    margin: 5px;
+    transform: translateX(100px);
+    animation: slideInActions 0.6s forwards ease-in;
 }
 
+@keyframes slideInActions {
+    from {
+        transform: translateX(100px);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
 
   .actions button:hover {
     cursor: pointer;
@@ -273,8 +294,7 @@ margin: 5px;
     color: #ffffff;
   }
 
-
-  .switches {
+.switches {
     font-family: Arial, sans-serif;
     margin-top: 20px;
     display: flex;
@@ -283,14 +303,25 @@ margin: 5px;
 
 .switch-container {
     display: flex;
-    flex-direction: column; /* Stack label on top of switch */
-    align-items: center;    /* Center items horizontally */
-    margin-right: 20px;     /* Add space between switches */
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
     color: white;
+    transform: translateX(-200%);
+    animation: slideInSwitch 1s forwards ease-in;
+}
+
+@keyframes slideInSwitch {
+    from {
+        transform: translateX(-300%);
+    }
+    to {
+        transform: translateX(0);
+    }
 }
 
 .switch-label {
-    margin-bottom: 5px; /* Space between label and switch */
+    margin-bottom: 5px;
 }
 
 .switch {
@@ -300,17 +331,13 @@ margin: 5px;
     height: 34px;
 }
 
-
-  
-  /* Hide default HTML checkbox */
-  .switch input {
+.switch input {
     opacity: 0;
     width: 0;
     height: 0;
-  }
-  
-  /* The slider */
-  .slider {
+}
+
+.slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -320,9 +347,9 @@ margin: 5px;
     background-color: #ccc;
     -webkit-transition: .4s;
     transition: .4s;
-  }
-  
-  .slider:before {
+}
+
+.slider:before {
     position: absolute;
     content: "";
     height: 26px;
@@ -332,66 +359,65 @@ margin: 5px;
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
-  }
-  
-  input:checked + .slider {
+}
+
+input:checked + .slider {
     background-color: #2196F3;
-  }
-  
-  input:focus + .slider {
+}
+
+input:focus + .slider {
     box-shadow: 0 0 1px #2196F3;
-  }
-  
-  input:checked + .slider:before {
+}
+
+input:checked + .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
-  }
-  
-  /* Rounded sliders */
-  .slider.round {
-    border-radius: 34px;
-  }
-  
-  .slider.round:before {
-    border-radius: 50%;
-  }
+}
 
-  @media only screen and (max-width: 480px){
-    #logo{
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+@media only screen and (max-width: 480px) {
+    #logo {
         width: 100%;
     }
-    .filter-container{
+    .filter-container {
         justify-content: center;
     }
-    #filter-heading{
+    #filter-heading {
         display: none;
     }
-    .Shuffle{
+    .Shuffle {
         display: flex;
         justify-content: center;
         padding-bottom: 0;
     }
-    .filteringDropdowns{
+    .filteringDropdowns {
         justify-content: center;
     }
-    .switches{
+    .switches {
         justify-content: center;
         margin-top: 0;
     }
-    .box-container{
+    .box-container {
         flex-direction: column;
     }
-    #internPool{
+    #internPool {
         padding: 0 11vw;
     }
-    .pool-box{
+    .pool-box {
         width: 78vw;
     }
-    #outcome-box{
+    #outcome-box {
         width: 79vw;
     }
-    #display-percentage{
+    #display-percentage {
         text-align: center;
     }
-  }
+}
