@@ -9,7 +9,7 @@ html, body {
     font-weight: 700 !important;
     display: flex;
     flex-direction: column;
-    background-color: rgba(3, 3, 3, 0.325);
+    background-color: rgba(3, 3, 3, 0.527);
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     height: 100%;
@@ -103,7 +103,7 @@ nav {
     margin: 5px;
 }
 
-.dropdown-btn {
+.dropdown-btn{
     font-family: Arial, sans-serif;
     color: black;
     border: 1px solid grey;
@@ -198,7 +198,7 @@ nav {
     background-color: white;
     overflow-y: scroll;
     height: 64vh;
-    padding-left: 1em;
+    padding-left: 0;
 }
 
 .pool-box ul li {

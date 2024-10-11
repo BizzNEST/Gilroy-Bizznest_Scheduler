@@ -656,3 +656,4 @@ function checkAccuracyLocation_Deperatment(array) {
      })
 
  });
+
