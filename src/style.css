@@ -9,7 +9,7 @@ html, body {
     font-weight: 700 !important;
     display: flex;
     flex-direction: column;
-    background-color: rgba(3, 3, 3, 0.325);
+    background-color: rgba(3, 3, 3, 0.527);
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     height: 100%;
@@ -98,7 +98,7 @@ nav {
     margin: 5px;
 }
 
-.dropdown-btn {
+.dropdown-btn{
     font-family: Arial, sans-serif;
     font-weight: bold;
     font-size:medium;
@@ -171,7 +171,7 @@ nav {
     background-color: white;
     overflow: scroll;
     height: 64vh;
-    padding-left: 1em;
+    padding-left: 0;
 }
 
 .pool-box ul li{
@@ -218,8 +218,6 @@ nav {
 #internPool{
     list-style: none;
     font-family: Arial, sans-serif;
-    text-align: start;
-    padding-left: 0;
 }
 
 #groups {
@@ -296,6 +294,7 @@ margin: 5px;
     width: 0;
     height: 0;
   }
+  
   /* The slider */
   .slider {
     position: absolute;
