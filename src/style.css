@@ -160,7 +160,10 @@ nav {
     
 }
 
-
+.interPool-wrap{
+    overflow: hidden;
+    border-radius: 20px;
+}
 
 .pool-box {
     border: 2px solid rgb(167, 165, 165);
@@ -169,7 +172,7 @@ nav {
     padding: 1em;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
     background-color: white;
-    overflow: scroll;
+    overflow-y: scroll;
     height: 64vh;
     padding-left: 0;
 }
@@ -178,15 +181,26 @@ nav {
     padding-bottom: 15px;
 }
 
+.outcome-wrapper{
+    overflow: hidden;
+    border-radius: 20px;
+}
+
 .outcome-box {
     border: 2px solid black;
     padding: 1em;
     background-color: white;
     height: 64vh;
-    overflow: scroll;
+    overflow-y: scroll;
     padding-top: 10px;
 }
-
+#display-percentage{
+    display:block;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 1.2em;
+    margin-top: auto;
+}
 
 /* START: styling the javascript-made elements (tables and rows */
 /* Style the table in the outcome box */
@@ -344,16 +358,40 @@ margin: 5px;
   }
 
   @media only screen and (max-width: 480px){
+    #logo{
+        width: 100%;
+    }
+    .filter-container{
+        justify-content: center;
+    }
+    #filter-heading{
+        display: none;
+    }
+    .Shuffle{
+        display: flex;
+        justify-content: center;
+        padding-bottom: 0;
+    }
+    .filteringDropdowns{
+        justify-content: center;
+    }
+    .switches{
+        justify-content: center;
+        margin-top: 0;
+    }
     .box-container{
         flex-direction: column;
     }
     #internPool{
-        margin-left: -10vw;
+        padding: 0 11vw;
     }
     .pool-box{
-        width: 65vw;
+        width: 78vw;
     }
     #outcome-box{
         width: 79vw;
+    }
+    #display-percentage{
+        text-align: center;
     }
   }
