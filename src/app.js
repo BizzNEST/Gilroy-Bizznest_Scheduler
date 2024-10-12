@@ -483,60 +483,139 @@ function toggleLocDep(array){
  /*
 This function will display the pairs
 */
- function displayPairs(interns) {
+function displayPairs(interns) {
     outcomeBox.innerHTML = ''; // Clear previous content
 
     const table = document.createElement("table"); // Create a table element
 
     if (interns.length % 2 === 0) {
+        // If the number of interns is even
         for (let i = 0; i < interns.length; i += 2) {
             const row = document.createElement("tr"); // Create a new table row
 
-            const internA = document.createElement("td"); // Create a cell for the first intern
-            internA.innerHTML = "<strong>" + interns[i].name + "</strong>"; // Add intern name
+            // Create a cell for the first intern's details
+            const internA_cell = document.createElement("td");
+            const internA_name = document.createElement("div");
+            internA_name.innerHTML = "<strong>" + interns[i].name + "</strong>"; // Name is bold
+            const internA_department = document.createElement("div");
+            internA_department.innerHTML = interns[i].department; // Department is not bold
+            const internA_location = document.createElement("div");
+            internA_location.innerHTML = interns[i].location; // Location is not bold
 
-            const internB = document.createElement("td"); // Create a cell for the second intern
-            internB.innerHTML = "<strong>" + interns[i + 1].name + "</strong>"; // Add intern name
+            // Append internA details to internA_cell
+            internA_cell.appendChild(internA_name);
+            internA_cell.appendChild(internA_department);
+            internA_cell.appendChild(internA_location);
 
-            row.appendChild(internA);
-            row.appendChild(internB);
-            table.appendChild(row); // Append the row to the table
+            // Create a cell for the second intern's details
+            const internB_cell = document.createElement("td");
+            const internB_name = document.createElement("div");
+            internB_name.innerHTML = "<strong>" + interns[i + 1].name + "</strong>"; // Name is bold
+            const internB_department = document.createElement("div");
+            internB_department.innerHTML = interns[i + 1].department; // Department is not bold
+            const internB_location = document.createElement("div");
+            internB_location.innerHTML = interns[i + 1].location; // Location is not bold
+
+            // Append internB details to internB_cell
+            internB_cell.appendChild(internB_name);
+            internB_cell.appendChild(internB_department);
+            internB_cell.appendChild(internB_location);
+
+            // Append the two cells (intern A and intern B) to the row
+            row.appendChild(internA_cell);
+            row.appendChild(internB_cell);
+
+            // Append the row to the table
+            table.appendChild(row);
         }
     } else {
+        // If the number of interns is odd
         for (let i = 0; i < interns.length - 3; i += 2) {
-            const row = document.createElement("tr");
+            const row = document.createElement("tr"); // Create a new table row
 
-            const internA = document.createElement("td");
-            internA.innerHTML = "<strong>" + interns[i].name + "</strong>";
+            // Create a cell for intern A
+            const internA_cell = document.createElement("td");
+            const internA_name = document.createElement("div");
+            internA_name.innerHTML = "<strong>" + interns[i].name + "</strong>"; // Name is bold
+            const internA_department = document.createElement("div");
+            internA_department.innerHTML = interns[i].department; // Department is not bold
+            const internA_location = document.createElement("div");
+            internA_location.innerHTML = interns[i].location; // Location is not bold
 
-            const internB = document.createElement("td");
-            internB.innerHTML = "<strong>" + interns[i + 1].name + "</strong>";
+            // Append intern A details to internA_cell
+            internA_cell.appendChild(internA_name);
+            internA_cell.appendChild(internA_department);
+            internA_cell.appendChild(internA_location);
 
-            row.appendChild(internA);
-            row.appendChild(internB);
+            // Create a cell for intern B
+            const internB_cell = document.createElement("td");
+            const internB_name = document.createElement("div");
+            internB_name.innerHTML = "<strong>" + interns[i + 1].name + "</strong>"; // Name is bold
+            const internB_department = document.createElement("div");
+            internB_department.innerHTML = interns[i + 1].department; // Department is not bold
+            const internB_location = document.createElement("div");
+            internB_location.innerHTML = interns[i + 1].location; // Location is not bold
+
+            // Append intern B details to internB_cell
+            internB_cell.appendChild(internB_name);
+            internB_cell.appendChild(internB_department);
+            internB_cell.appendChild(internB_location);
+
+            // Append the two cells (intern A and intern B) to the row
+            row.appendChild(internA_cell);
+            row.appendChild(internB_cell);
+
+            // Append the row to the table
             table.appendChild(row);
         }
 
+        // Handle the last three interns (for odd case)
         const row = document.createElement("tr");
 
-        const internA = document.createElement("td");
-        internA.innerHTML = "<strong>" + interns[interns.length - 3].name + "</strong>";
+        const internA_cell = document.createElement("td");
+        const internA_name = document.createElement("div");
+        internA_name.innerHTML = "<strong>" + interns[interns.length - 3].name + "</strong>"; // Name is bold
+        const internA_department = document.createElement("div");
+        internA_department.innerHTML = interns[interns.length - 3].department; // Department is not bold
+        const internA_location = document.createElement("div");
+        internA_location.innerHTML = interns[interns.length - 3].location; // Location is not bold
+        internA_cell.appendChild(internA_name);
+        internA_cell.appendChild(internA_department);
+        internA_cell.appendChild(internA_location);
 
-        const internB = document.createElement("td");
-        internB.innerHTML = "<strong>" + interns[interns.length - 2].name + "</strong>";
+        const internB_cell = document.createElement("td");
+        const internB_name = document.createElement("div");
+        internB_name.innerHTML = "<strong>" + interns[interns.length - 2].name + "</strong>"; // Name is bold
+        const internB_department = document.createElement("div");
+        internB_department.innerHTML = interns[interns.length - 2].department; // Department is not bold
+        const internB_location = document.createElement("div");
+        internB_location.innerHTML = interns[interns.length - 2].location; // Location is not bold
+        internB_cell.appendChild(internB_name);
+        internB_cell.appendChild(internB_department);
+        internB_cell.appendChild(internB_location);
 
-        const internC = document.createElement("td");
-        internC.innerHTML = "<strong>" + interns[interns.length - 1].name + "</strong>";
+        const internC_cell = document.createElement("td");
+        const internC_name = document.createElement("div");
+        internC_name.innerHTML = "<strong>" + interns[interns.length - 1].name + "</strong>"; // Name is bold
+        const internC_department = document.createElement("div");
+        internC_department.innerHTML = interns[interns.length - 1].department; // Department is not bold
+        const internC_location = document.createElement("div");
+        internC_location.innerHTML = interns[interns.length - 1].location; // Location is not bold
+        internC_cell.appendChild(internC_name);
+        internC_cell.appendChild(internC_department);
+        internC_cell.appendChild(internC_location);
 
-        row.appendChild(internA);
-        row.appendChild(internB);
-        row.appendChild(internC);
+        row.appendChild(internA_cell);
+        row.appendChild(internB_cell);
+        row.appendChild(internC_cell);
+
         table.appendChild(row);
     }
 
     // Append the table to the outcomeBox
     outcomeBox.appendChild(table);
 }
+
 
 
 function showGroups() {
