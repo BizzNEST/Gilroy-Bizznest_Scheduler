@@ -10,6 +10,7 @@ html, body {
     display: flex;
     flex-direction: column;
     background-color: rgba(3, 3, 3, 0.527);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     height: 100%;
@@ -40,6 +41,10 @@ nav {
     padding: 10px;
 }
 
+.filter-container button {
+    color: #000 !important;
+}
+
 .filter-container h2 {
     color: white;
     margin-left: 10px;
@@ -68,6 +73,7 @@ nav {
     padding-left: 2%;
     padding-right: 2%;
     background-color: #79CBA3;
+    color: #000 !important;
     border: none;
     border-radius: 20px;
     height: 40px;
@@ -432,6 +438,9 @@ input:checked + .slider:before {
     }
     .filter-container {
         justify-content: center;
+    }
+    .filter-container button {
+        background-color: #ba2c8e;
     }
     #filter-heading {
         display: none;
