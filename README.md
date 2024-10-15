@@ -11,6 +11,17 @@ The goal of this project is to develop a randomized scheduling application using
 * Assist others when needed, embrace a "No man left behind" mentality.
 * Collaborate, have fun, and share your knowledge!
 
+
+## Running the Project
+1. **clone the repository** run the following command to clone the repository to your local machine
+```sh
+git clone git@github.com:BizzNEST/Gilroy-Bizznest_Scheduler.git
+```
+2. **open the project folder in VS code**
+
+3. **Install the live server extension** https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
+4. Open `index.html` using the live server extension.  Note that simply opening `index.html` without a local server will result in a broken site.
+
 ## Instructions
 > [!NOTE]
 > Basic web development tools (e.g., code editor, browser testing tools), GitHub.
