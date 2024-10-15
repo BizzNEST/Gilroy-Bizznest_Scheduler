@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
 
 
+
+
     const internPool = document.getElementById("internPool")
     const dropDownButtons = document.querySelectorAll(".dropdown-btn");
     const selectAll = document.getElementById("select-all")
@@ -18,13 +20,16 @@ document.addEventListener("DOMContentLoaded", function() {
     const displayPercentage = document.getElementById('display-percentage')
     //function to click on export button and download
     document.getElementById("export-btn").addEventListener("click", function(){
-
+ 
+ 
         let originalOverflow = outcomeBox.style.overflow;
         let originalHeight = outcomeBox.style.height;
-
+ 
+ 
         outcomeBox.style.overflow = "visible";
         outcomeBox.style.height = "auto";
-
+ 
+ 
         //make sure to target the container you need down below
         html2canvas(document.getElementById("outcome-box")).then(function(canvas){
             outcomeBox.style.overflow = originalOverflow;
@@ -39,35 +44,38 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
     // Function to toggle the dropdown
-dropDownButtons.forEach(button => {
+ dropDownButtons.forEach(button => {
     button.addEventListener("click", function (event) {
         event.stopPropagation(); // Prevent the document click event from firing
         const dropDownContent = this.nextElementSibling;
         dropDownContent.classList.toggle("show");
     });
-});
-
-// Prevent dropdown from closing when clicking inside its content
-document.querySelectorAll(".dropdown-content").forEach(dropdown => {
+ });
+ 
+ 
+ // Prevent dropdown from closing when clicking inside its content
+ document.querySelectorAll(".dropdown-content").forEach(dropdown => {
     dropdown.addEventListener("click", function(event) {
         event.stopPropagation(); // Prevents closing the dropdown when clicking inside it
     });
-});
-
-// Close dropdowns when clicking anywhere outside
-document.addEventListener("click", function () {
+ });
+ 
+ 
+ // Close dropdowns when clicking anywhere outside
+ document.addEventListener("click", function () {
     document.querySelectorAll(".dropdown-content.show").forEach(dropdown => {
         dropdown.classList.remove("show");
     });
-});
-
-    
-//-------------------------------------------------------------------------------------------------------------------------------------
+ });
  
+ 
+   
+ //-------------------------------------------------------------------------------------------------------------------------------------
  /*
   getAll() function will be used when we select all the interns
  */
-
+ 
+ 
  const names = [];
  function getAll() {
     fetch('./interns.json')
@@ -107,11 +115,9 @@ document.addEventListener("click", function () {
         .catch((error) => console.error('Error fetching data:', error));
  }
  getAll();
-
- 
-//------------------------------------------------------------------------------------------------------------------------------------------
  
  
+ //------------------------------------------------------------------------------------------------------------------------------------------
  const addFilterByLocation = [];
  var filterByLocation =[];
  // Adding all interns in that location to the array
@@ -135,10 +141,11 @@ document.addEventListener("click", function () {
             filterByLocation.forEach(intern => {
                 addFilterByLocation.push({
                     name: intern.name,
-                    department: intern.location,
-                    location: intern.department
+                    location: intern.location,  // Correct assignment
+                    department: intern.department  // Correct assignment
                 });
-            })
+            });
+           
             console.log(addFilterByLocation)
         })
         .catch((error) => console.error('Error fetching data:', error));
@@ -150,28 +157,30 @@ document.addEventListener("click", function () {
     fetch('./interns.json')
         .then((response) => response.json())
         .then((json) => {
-            let filterByLocation = [];
             if (json.interns && Array.isArray(json.interns)) {
+                // Filter out interns from the given location
                 filterByLocation = json.interns
                     .filter(intern => intern.location === place)
                     .map(intern => ({
                         name: intern.name,
                         location: intern.location,
                         department: intern.department
-                }));
+                    }));
             }
-          
-            // Remove the interns from addFilterByLocation
+ 
+ 
+            // Now, remove the interns from the addFilterByLocation array
             filterByLocation.forEach(intern => {
                 const index = addFilterByLocation.findIndex(addIntern =>
-                    addIntern.person === intern.name &&
-                    addIntern.role === intern.department &&
-                    addIntern.place === intern.location);
+                    addIntern.name === intern.name &&
+                    addIntern.location === intern.location &&
+                    addIntern.department === intern.department
+                );
                 if (index !== -1) {
-                    addFilterByLocation.splice(index, 1); // Remove from array
+                    addFilterByLocation.splice(index, 1); // Remove the intern from the array
                 }
             });
-            console.log(addFilterByLocation);
+            console.log(addFilterByLocation); // Check to see the array after removal
         })
         .catch((error) => console.error('Error fetching data:', error));
  }
@@ -184,21 +193,24 @@ document.addEventListener("click", function () {
         }
     });
  });
-
-
- //-------------------------------------------------------------------------------------------------------------------------------------------
  
+ 
+ 
+ 
+ 
+ 
+ //-------------------------------------------------------------------------------------------------------------------------------------------
  var filterByDepartment = [];
  const addFilterByDepartment = [];
  /*
-This function will get all interns from a specific department
-and will add everyone from that department to an array
+ This function will get all interns from a specific department
+ and will add everyone from that department to an array
  */
  function getByDepartment(role) {
     fetch('./interns.json')
         .then((response) => response.json())
         .then((json) => {
-            // Filter the interns based on the location
+            // Filter the interns based on the department
             if (json.interns && Array.isArray(json.interns)) {
                 filterByDepartment = json.interns
                 //filter the array to those interns
@@ -222,7 +234,7 @@ and will add everyone from that department to an array
         .catch((error) => console.error('Error fetching data:', error));
  }
  /*
- When the box is unchecked this will automatically get the interns 
+ When the box is unchecked this will automatically get the interns
  from the specified department and will remove them from the array.
  */
  function removeByDepartment(role) {
@@ -239,7 +251,7 @@ and will add everyone from that department to an array
                         department: intern.department
                 }));
             }
-          
+         
             // Remove the interns from addFilterByLocation
             filterByDepartment.forEach(intern => {
                 const index = addFilterByDepartment.findIndex(addIntern=>
@@ -255,7 +267,6 @@ and will add everyone from that department to an array
         })
         .catch((error) => console.error('Error fetching data:', error));
  }
- 
  department.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
     checkbox.addEventListener("change", function() {
         if (checkbox.checked) {
@@ -265,11 +276,15 @@ and will add everyone from that department to an array
         }
     });
  });
-
-
-//----------------------------------------------------------------------------------------------------------------------------------------
-
-
+ 
+ 
+ 
+ 
+ //----------------------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
  /*
  The function gets the intersection of the department and location arrays
  */
@@ -307,7 +322,7 @@ and will add everyone from that department to an array
         console.log(intersection);
     }
     const checkboxes = internPool.querySelectorAll('input[type="checkbox"]');
-          
+         
     checkboxes.forEach(checkbox => {
         const checkboxValue = checkbox.value; // Assuming the value is the intern's name
         // Check if this checkbox's value (intern name) exists in the intersection array
@@ -337,19 +352,23 @@ and will add everyone from that department to an array
         checkbox.checked = false
     })
  })
-
-
-//------------------------------------------------------------------------------------------------------------------------------------------
-
-
-/*
-Here we are adding all the filtered items into the final array
-*/
+ 
+ 
+ 
+ 
+ //------------------------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ /*
+ Here we are adding all the filtered items into the final array
+ */
  const finalArray = [];
  function addFinalArray(){
     const checkboxes = internPool.querySelectorAll('input[type="checkbox"]');
-   
-    for(let i = 0; i < names.length; i++){     
+  
+    for(let i = 0; i < names.length; i++){    
         if(checkboxes[i].checked && checkboxes[i].value === names[i].name){
             finalArray.push({
                             name: names[i].name,
@@ -358,23 +377,25 @@ Here we are adding all the filtered items into the final array
                         })
         }
     }
-   
+  
     console.log(finalArray)
  }
  
  
-
-//--------------------------------------------------------------------------------------------------------------------------------------------
-
-
-/*
-When the boxes are checked we want to make the arrays where no 2 elements are from the same  
-the same department
-*/
+ //--------------------------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ /*
+ When the boxes are checked we want to make the arrays where no 2 elements are from the same 
+ the same department
+ */
  function assignDiffDepartment(array) {
     // Step 1: Shuffle the array to introduce randomness
     shuffleArray(array);
-
+ 
+ 
     // Step 2: Ensure no two consecutive elements have the same department
     for (let i = 0; i < array.length - 1; i++) {
         if (array[i].department === array[i + 1].department) {
@@ -389,20 +410,25 @@ the same department
         }
     }
     return array;
-}
-
-
-//-----------------------------------------------------------------------------------------------------------------------------------------
-
-
-/*
-When the boxes are checked we want to make the arrays where no 2 elements are from the same  
-the same department
-*/
-function assignDiffLocation(array) {
+ }
+ 
+ 
+ 
+ 
+ //-----------------------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ /*
+ When the boxes are checked we want to make the arrays where no 2 elements are from the same 
+ the same department
+ */
+ function assignDiffLocation(array) {
     // Step 1: Shuffle the array to introduce randomness
     shuffleArray(array);
-
+ 
+ 
     // Step 2: Ensure no two consecutive elements have the same department
     for (let i = 0; i < array.length - 1; i++) {
         if (array[i].location === array[i + 1].location) {
@@ -417,12 +443,14 @@ function assignDiffLocation(array) {
         }
     }
     return array;
-}
-
-function assignDiffLocationDepartment(array) {
+ }
+ 
+ 
+ function assignDiffLocationDepartment(array) {
     // Step 1: Shuffle the array to introduce randomness
     shuffleArray(array);
-
+ 
+ 
     // Step 2: Ensure no two consecutive elements have the same department
     for (let i = 0; i < array.length - 1; i++) {
         if (array[i].location === array[i + 1].location && array[i].department === array[i + 1].department) {
@@ -437,14 +465,17 @@ function assignDiffLocationDepartment(array) {
         }
     }
     return array;
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------
-
-
-/*
-This will shuffle the array and for randmoized pairing
-*/
+ }
+ 
+ 
+ //----------------------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ /*
+ This will shuffle the array and for randmoized pairing
+ */
  function shuffleArray(array) {
     for (let i = 0; i < array.length - 1; i++) {
         const j = Math.floor(Math.random() * (array.length - i)) + i; // Random index from i to end
@@ -453,16 +484,18 @@ This will shuffle the array and for randmoized pairing
     console.log(array)
     return array;
  }
-
-
-function toggleLocDep(array){
+ 
+ 
+ 
+ 
+ function toggleLocDep(array){
     const locationChecked = locationSwitch.querySelector('input[type="checkbox"]');
     const departmentChecked = departmentSwitch.querySelector('input[type="checkbox"]');
     if(departmentChecked.checked && locationChecked.checked ){
         assignDiffLocationDepartment(array)
         checkAccuracyLocation_Deperatment(array)
     }else if (departmentChecked.checked) {
-        assignDiffDepartment(array); 
+        assignDiffDepartment(array);
         checkAccuracyDepartment(array)
     }else if(locationChecked.checked){
         assignDiffLocation(array);
@@ -470,29 +503,36 @@ function toggleLocDep(array){
     }else{
         return array;
     }
-
+ 
+ 
     // Add location-specific logic here if needed in the future
     console.log(array);
-}
-
+ }
  
-
-//-----------------------------------------------------------------------------------------------------------------------------------------
-
-
+ 
+ 
+ 
+ //-----------------------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
  /*
-This function will display the pairs
-*/
-function displayPairs(interns) {
+ This function will display the pairs
+ */
+ function displayPairs(interns) {
     outcomeBox.innerHTML = ''; // Clear previous content
-
+ 
+ 
     const table = document.createElement("table"); // Create a table element
-
+ 
+ 
     if (interns.length % 2 === 0) {
         // If the number of interns is even
         for (let i = 0; i < interns.length; i += 2) {
             const row = document.createElement("tr"); // Create a new table row
-
+ 
+ 
             // Create a cell for the first intern's details
             const internA_cell = document.createElement("td");
             const internA_name = document.createElement("div");
@@ -501,12 +541,14 @@ function displayPairs(interns) {
             internA_department.innerHTML = interns[i].department; // Department is not bold
             const internA_location = document.createElement("div");
             internA_location.innerHTML = interns[i].location; // Location is not bold
-
+ 
+ 
             // Append internA details to internA_cell
             internA_cell.appendChild(internA_name);
             internA_cell.appendChild(internA_department);
             internA_cell.appendChild(internA_location);
-
+ 
+ 
             // Create a cell for the second intern's details
             const internB_cell = document.createElement("td");
             const internB_name = document.createElement("div");
@@ -515,16 +557,19 @@ function displayPairs(interns) {
             internB_department.innerHTML = interns[i + 1].department; // Department is not bold
             const internB_location = document.createElement("div");
             internB_location.innerHTML = interns[i + 1].location; // Location is not bold
-
+ 
+ 
             // Append internB details to internB_cell
             internB_cell.appendChild(internB_name);
             internB_cell.appendChild(internB_department);
             internB_cell.appendChild(internB_location);
-
+ 
+ 
             // Append the two cells (intern A and intern B) to the row
             row.appendChild(internA_cell);
             row.appendChild(internB_cell);
-
+ 
+ 
             // Append the row to the table
             table.appendChild(row);
         }
@@ -532,7 +577,8 @@ function displayPairs(interns) {
         // If the number of interns is odd
         for (let i = 0; i < interns.length - 3; i += 2) {
             const row = document.createElement("tr"); // Create a new table row
-
+ 
+ 
             // Create a cell for intern A
             const internA_cell = document.createElement("td");
             const internA_name = document.createElement("div");
@@ -541,12 +587,14 @@ function displayPairs(interns) {
             internA_department.innerHTML = interns[i].department; // Department is not bold
             const internA_location = document.createElement("div");
             internA_location.innerHTML = interns[i].location; // Location is not bold
-
+ 
+ 
             // Append intern A details to internA_cell
             internA_cell.appendChild(internA_name);
             internA_cell.appendChild(internA_department);
             internA_cell.appendChild(internA_location);
-
+ 
+ 
             // Create a cell for intern B
             const internB_cell = document.createElement("td");
             const internB_name = document.createElement("div");
@@ -555,23 +603,28 @@ function displayPairs(interns) {
             internB_department.innerHTML = interns[i + 1].department; // Department is not bold
             const internB_location = document.createElement("div");
             internB_location.innerHTML = interns[i + 1].location; // Location is not bold
-
+ 
+ 
             // Append intern B details to internB_cell
             internB_cell.appendChild(internB_name);
             internB_cell.appendChild(internB_department);
             internB_cell.appendChild(internB_location);
-
+ 
+ 
             // Append the two cells (intern A and intern B) to the row
             row.appendChild(internA_cell);
             row.appendChild(internB_cell);
-
+ 
+ 
             // Append the row to the table
             table.appendChild(row);
         }
-
+ 
+ 
         // Handle the last three interns (for odd case)
         const row = document.createElement("tr");
-
+ 
+ 
         const internA_cell = document.createElement("td");
         const internA_name = document.createElement("div");
         internA_name.innerHTML = "<strong>" + interns[interns.length - 3].name + "</strong>"; // Name is bold
@@ -582,7 +635,8 @@ function displayPairs(interns) {
         internA_cell.appendChild(internA_name);
         internA_cell.appendChild(internA_department);
         internA_cell.appendChild(internA_location);
-
+ 
+ 
         const internB_cell = document.createElement("td");
         const internB_name = document.createElement("div");
         internB_name.innerHTML = "<strong>" + interns[interns.length - 2].name + "</strong>"; // Name is bold
@@ -593,7 +647,8 @@ function displayPairs(interns) {
         internB_cell.appendChild(internB_name);
         internB_cell.appendChild(internB_department);
         internB_cell.appendChild(internB_location);
-
+ 
+ 
         const internC_cell = document.createElement("td");
         const internC_name = document.createElement("div");
         internC_name.innerHTML = "<strong>" + interns[interns.length - 1].name + "</strong>"; // Name is bold
@@ -604,56 +659,72 @@ function displayPairs(interns) {
         internC_cell.appendChild(internC_name);
         internC_cell.appendChild(internC_department);
         internC_cell.appendChild(internC_location);
-
+ 
+ 
         row.appendChild(internA_cell);
         row.appendChild(internB_cell);
         row.appendChild(internC_cell);
-
+ 
+ 
         table.appendChild(row);
     }
-
+ 
+ 
     // Append the table to the outcomeBox
     outcomeBox.appendChild(table);
-}
-
-
-
-function showGroups() {
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ function showGroups() {
     const outcomeID = document.getElementById("groups");
     outcomeID.style.visibility = "visible";
-
+ 
+ 
     const container = document.querySelector('.outer-box-container');
     container.classList.add('center-boxes');
     console.log(container.classList);
-}
-
-
-
-//-----------------------------------------------------------------------------------------------------------------------------------------
-
-
-/*
-adds the count and checks the accuracy of the pairs from different departments and locations
-*/
-function checkAccuracyLocation_Deperatment(array) {
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ //-----------------------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ /*
+ adds the count and checks the accuracy of the pairs from different departments and locations
+ */
+ function checkAccuracyLocation_Deperatment(array) {
     var sameCounter = 0;
     var diffCounter = 0;
     var totalPairs = Math.floor(array.length / 2);
     console.log(array);
-
+ 
+ 
     for (let i = 0; i < array.length - 1; i += 2) {
         const person1 = array[i];
         const person2 = array[i + 1];
-
+ 
+ 
         if (person1.location != person2.location && person1.department != person2.department) {
             diffCounter++;
         } else {
             sameCounter++;
         }
     }
-
+ 
+ 
     var percentage = Math.floor((diffCounter / totalPairs) * 100);
-
+ 
+ 
     console.log("Same Location and Department Pairs:", sameCounter);
     console.log("Different Location and Department Pairs:", diffCounter);
     console.log("Percentage Different Locations and Department:", percentage);
@@ -661,14 +732,17 @@ function checkAccuracyLocation_Deperatment(array) {
     const showPercentage = document.createElement("p");
     showPercentage.innerHTML = `Percentage Different Locations and Department: ${percentage}%`;
     displayPercentage.appendChild(showPercentage);
-}
-
-
+ }
+ 
+ 
+ 
+ 
  function checkAccuracyLocation(array) {
     var sameCounter = 0;
     var diffCounter = 0;
     var totalPairs = Math.floor(array.length / 2);
-
+ 
+ 
     console.log(array)
     for(let i = 0; i < array.length-1; i+=2){
         person1 = array[i]
@@ -679,26 +753,28 @@ function checkAccuracyLocation_Deperatment(array) {
             diffCounter++;
         }
     }
- 
     var percentage = Math.floor((diffCounter/totalPairs)*100)
-
+ 
+ 
     console.log("Same Location Pairs:", sameCounter);
     console.log("Different Location Pairs:", diffCounter);
     console.log("Percentage Different Location Pairs", percentage)
-
-
+ 
+ 
+ 
+ 
     displayPercentage.innerHTML = '';
     const showPercentage = document.createElement("p");
-    
+   
     showPercentage.innerHTML = `Percentage Different Locations: ${percentage}%`;
     displayPercentage.appendChild(showPercentage);
  }
- 
  function checkAccuracyDepartment(array) {
     var sameCounter = 0;
     var diffCounter = 0;
     var totalPairs = Math.floor(array.length / 2);
-
+ 
+ 
     console.log(array)
     for(let i = 0; i < array.length-1; i+=2){
         person1 = array[i]
@@ -709,22 +785,18 @@ function checkAccuracyLocation_Deperatment(array) {
             diffCounter++;
         }
     }
- 
- 
     var percentage = Math.floor((diffCounter/totalPairs)*100)
     console.log("Same Department Pairs:", sameCounter);
     console.log("Different Department Pairs:", diffCounter);
-    console.log("Percentage Different Department Pairs", percentage) 
+    console.log("Percentage Different Department Pairs", percentage)
     displayPercentage.innerHTML= "";
     const showPercentage = document.createElement("p");
     showPercentage.innerHTML = `Percentage Different Department: ${percentage}%`;
     displayPercentage.appendChild(showPercentage);
     // groups.removeChild(showPercentage)
-
+ 
+ 
  }
- 
- 
- 
  shuffle.addEventListener("click", function() {
     finalArray.length = 0;
     addFinalArray(names)
@@ -733,6 +805,13 @@ function checkAccuracyLocation_Deperatment(array) {
     displayPairs(finalArray);
     showGroups();
      })
-
+ 
+ 
  });
-
+ 
+ 
+ 
+ 
+ 
+ 
+ 
