@@ -6,7 +6,7 @@ html, body {
 }
 
 .allMightyContainer {
-    font-weight: 700 !important;
+    /* font-weight: 700 !important; */
     display: flex;
     flex-direction: column;
     background-color: rgba(3, 3, 3, 0.527);
@@ -275,6 +275,7 @@ nav {
 #internPool {
     list-style: none;
     font-family: Arial, sans-serif;
+    font-weight:700;
     text-align: start;
     padding-left: 10px;
 }
