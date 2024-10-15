@@ -1,21 +1,3 @@
-@keyframes runAway {
-  0% {
-    transform: translateX(0);  /* Starts at its original position */
-  }
-  50% {
-    transform: translateX(200px);  /* Moves halfway, indicating it's starting to "run" */
-  }
-  100% {
-    transform: translateX(1000px);  /* Runs completely off the screen */
-  }
-  50% {
-      transform: translateX(-500px);  /* Moves halfway, indicating it's starting to "run" */
-    }
-    0% {
-      transform: translateX(0);  /* Starts at its original position */
-    }
-}
-
 html, body {
     margin: 0;
     padding: 0;
@@ -154,5 +136,11 @@ video {
   }
   70% {
     transform: translateY(-10px);
+  }
+}
+
+@media screen and (max-width: 880px) {
+  video {
+      filter: blur(10px) grayscale(100%);
   }
 }

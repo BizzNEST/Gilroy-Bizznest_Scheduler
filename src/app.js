@@ -160,7 +160,7 @@ document.addEventListener("click", function () {
                         department: intern.department
                 }));
             }
-          
+
             // Remove the interns from addFilterByLocation
             filterByLocation.forEach(intern => {
                 const index = addFilterByLocation.findIndex(addIntern =>
