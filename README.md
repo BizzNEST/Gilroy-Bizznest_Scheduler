@@ -48,3 +48,18 @@ git clone git@github.com:BizzNEST/Gilroy-Bizznest_Scheduler.git
 3. Ask a fellow colleague for help
 4. Ask your senior intern about the problem
 5. Message Alex for help
+
+
+## How to Use App
+1. You'll start on a landing page, click 'Pair up' button to navigate to the site's UI.
+2. Once you are in the UI, you will see a list of bizzNest interns in a box, and a group of buttons with filtering options.
+3. There are multiple ways to filter through the interns.
+ * Select all will select every intern in the list.
+ * Deselect all will deselect every intern in the list.
+ * Department dropdown allows a user to select interns by their designated department
+ * Location dropdown allows a user to select interns by their designated location
+ (Filtering by location and department simultaneously is enabled)
+ 4. Pair from different department or location sliders are used to ensure that interns are paired with interns from other locations or departments. (When this feature is applied, an accuracy checker is displayed at the bottom of the page)
+5. When ready to assign partners based on filtering criteria, click shuffle button. This will create a new box displaying the partners.
+6. After creating partner assignment, clicking the export button will allow the user to keep a PNG copy of the assigned partners.
+
