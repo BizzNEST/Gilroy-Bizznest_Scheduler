@@ -8,15 +8,12 @@ document.addEventListener("DOMContentLoaded", function() {
    const selectAll = document.getElementById("select-all")
    const deselectAll = document.getElementById("deselect-all")
    const location = document.getElementById("location")
-   // const locations = document.getElementById("location");
    const department = document.getElementById("department")
    const filter = document.getElementById("filter")
    const shuffle = document.getElementById("shuffle-btn")
    const outcomeBox = document.getElementById("outcome-box");
-   const groupsContainer = document.getElementById("groups-container")
    const locationSwitch = document.getElementById("location-switch")
    const departmentSwitch = document.getElementById("department-switch")
-   const groups = document.getElementById('groups')
    const displayPercentage = document.getElementById('display-percentage')
    //function to click on export button and download
    document.getElementById("export-btn").addEventListener("click", function(){
@@ -74,212 +71,160 @@ document.addEventListener("click", function () {
 /*
  getAll() function will be used when we select all the interns
 */
+    const addFilterByLocation = [];
+    const addFilterByDepartment = [];
+    const intersection = [];
+    let names = [];
 
+   // Function to render the intern pool with checkboxes (this is done once)
+    function renderInternPool(interns) {
+      internPool.innerHTML = ''; // Clear current intern pool
+      interns.forEach(person => {
+         const li = document.createElement("li");
+         const label = document.createElement("label");
+         const checkbox = document.createElement("input");
+         checkbox.type = "checkbox";
+         checkbox.value = person.name;
+         label.textContent = person.name;
+         label.prepend(checkbox);
+         li.appendChild(label);
+         internPool.appendChild(li);
+      });
+   }
 
-const names = [];
-function getAll() {
-   fetch('./interns.json')
-       .then((response) => response.json())
-       .then((json) => {
-           // initialise an array for names to be added to
-           // const names = [];
-           if (json.interns && Array.isArray(json.interns)) {
-               json.interns.forEach(intern => {
-                   // if the names exist then push them onto the array
-                   if (intern.name && intern.location && intern.department) {
-                       names.push({
-                           name: intern.name,
-                           location: intern.location,
-                           department: intern.department
-                       });
-                   }
-               });
-               console.log(names)
-           }
-           // Now that names array is populated, let's iterate over it
-           const internPool = document.getElementById("internPool"); // Ensure there's an element with id "internPool"
-           names.forEach(person => {
-               const li = document.createElement("li"); // Create a new li element
-               const label = document.createElement("label"); // Create a new label
-               const checkbox = document.createElement("input"); // Create a checkbox input
-               checkbox.type = "checkbox"; // Set the type to checkbox
-               checkbox.value = person.name; // Set the value of the checkbox to the intern's name
-               // Set the label text and append the checkbox to the label
-               label.textContent = person.name;
-               label.prepend(checkbox); // Add checkbox before the text
-               // Append the label to the li, and li to the ul
-               li.appendChild(label);
-               internPool.appendChild(li);
-           });
-       })
-       .catch((error) => console.error('Error fetching data:', error));
-}
-getAll();
-
-
-//------------------------------------------------------------------------------------------------------------------------------------------
-const addFilterByLocation = [];
-var filterByLocation =[];
-// Adding all interns in that location to the array
-function getByLocation(place) {
-   fetch('./interns.json')
-       .then((response) => response.json())
-       .then((json) => {
-           // Filter the interns based on the location
-           if (json.interns && Array.isArray(json.interns)) {
-               filterByLocation = json.interns
-               //filter the array to those interns
-               .filter(intern => intern.location === place)
-               //map to the names of those interns
-               .map(intern => ({
-                       name: intern.name,
-                       location: intern.location,
-                       department: intern.department
+   // Fetch all interns and render the intern pool initially
+   function getAll() {
+      fetch('./interns.json')
+         .then(response => response.json())
+         .then(json => {
+            if (json.interns && Array.isArray(json.interns)) {
+               names = json.interns.map(intern => ({
+                  name: intern.name,
+                  location: intern.location,
+                  department: intern.department
                }));
-           }
-           // console.log( filterByLocation);
-           filterByLocation.forEach(intern => {
-               addFilterByLocation.push({
-                   name: intern.name,
-                   location: intern.location,  // Correct assignment
-                   department: intern.department  // Correct assignment
-               });
-           });
-          
-           console.log(addFilterByLocation)
-       })
-       .catch((error) => console.error('Error fetching data:', error));
-}
-/*
-This removes elements from the array when a checkbox is unchecked
-*/
-function removeByLocation(place) {
-   fetch('./interns.json')
-       .then((response) => response.json())
-       .then((json) => {
-           if (json.interns && Array.isArray(json.interns)) {
-               // Filter out interns from the given location
-               filterByLocation = json.interns
-                   .filter(intern => intern.location === place)
-                   .map(intern => ({
-                       name: intern.name,
-                       location: intern.location,
-                       department: intern.department
-                   }));
-           }
+               renderInternPool(names); // Render all interns once
+               console.log(names); // Log the intern names when fetched
+            }
+         })
+         .catch(error => console.error('Error fetching data:', error));
+   }
+   getAll(); // Call on page load
 
+   // Function to check/uncheck the boxes based on filters
+   function filterArray(departments, locations) {
+      const checkboxes = internPool.querySelectorAll('input[type="checkbox"]');
+      intersection.length = 0; // Clear the intersection array
 
-           // Now, remove the interns from the addFilterByLocation array
-           filterByLocation.forEach(intern => {
-               const index = addFilterByLocation.findIndex(addIntern =>
-                   addIntern.name === intern.name &&
-                   addIntern.location === intern.location &&
-                   addIntern.department === intern.department
-               );
+      // If both departments and locations filters are empty, uncheck all checkboxes
+      if (departments.length === 0 && locations.length === 0) {
+         checkboxes.forEach(checkbox => checkbox.checked = false);
+         console.log("All filters are unchecked, no checkboxes should be checked.");
+         return;
+      }
+
+      // Loop through each intern in the `names` array
+      names.forEach(intern => {
+         const checkbox = Array.from(checkboxes).find(c => c.value === intern.name);
+         const inDepartmentFilter = departments.length === 0 || departments.some(d => d.name === intern.name);
+         const inLocationFilter = locations.length === 0 || locations.some(l => l.name === intern.name);
+
+         // If intern matches both filters (or filters are empty), check the box, otherwise uncheck it
+         if (inDepartmentFilter && inLocationFilter) {
+            checkbox.checked = true; // Check the checkbox
+            intersection.push(intern); // Add intern to intersection
+         } else {
+            checkbox.checked = false; // Uncheck the checkbox
+         }
+      });
+
+      // Log the intersection of filtered interns
+      console.log("Filtered Intersection: ", intersection);
+   }
+
+   // Fetch interns by location and update the filter array
+   function getByLocation(place) {
+      fetch('./interns.json')
+         .then(response => response.json())
+         .then(json => {
+            const filterByLocation = json.interns.filter(intern => intern.location === place);
+            filterByLocation.forEach(intern => addFilterByLocation.push(intern));
+            console.log("Added to filterByLocation: ", filterByLocation);
+            filterArray(addFilterByDepartment, addFilterByLocation); // Apply filter
+         })
+         .catch(error => console.error('Error fetching data:', error));
+   }
+
+   // Remove interns from the location filter array when unchecked
+   function removeByLocation(place) {
+      fetch('./interns.json')
+         .then(response => response.json())
+         .then(json => {
+            const filterByLocation = json.interns.filter(intern => intern.location === place);
+            filterByLocation.forEach(intern => {
+               const index = addFilterByLocation.findIndex(i => i.name === intern.name);
                if (index !== -1) {
-                   addFilterByLocation.splice(index, 1); // Remove the intern from the array
+                  addFilterByLocation.splice(index, 1); // Remove from array
                }
-           });
-           console.log(addFilterByLocation); // Check to see the array after removal
-       })
-       .catch((error) => console.error('Error fetching data:', error));
-}
-location.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-   checkbox.addEventListener("change", function() {
-       if (checkbox.checked) {
-           getByLocation(checkbox.value); // Add interns to the array when checked
-       } else {
-           removeByLocation(checkbox.value); // Remove interns from the array when unchecked
-       }
-   });
-});
+            });
+            console.log("Removed from filterByLocation: ", filterByLocation);
+            filterArray(addFilterByDepartment, addFilterByLocation); // Apply filter
+         })
+         .catch(error => console.error('Error fetching data:', error));
+   }
 
+   // Fetch interns by department and update the filter array
+   function getByDepartment(role) {
+      fetch('./interns.json')
+         .then(response => response.json())
+         .then(json => {
+            const filterByDepartment = json.interns.filter(intern => intern.department === role);
+            filterByDepartment.forEach(intern => addFilterByDepartment.push(intern));
+            console.log("Added to filterByDepartment: ", filterByDepartment);
+            filterArray(addFilterByDepartment, addFilterByLocation); // Apply filter
+         })
+         .catch(error => console.error('Error fetching data:', error));
+   }
 
-
-
-
-
-//-------------------------------------------------------------------------------------------------------------------------------------------
-var filterByDepartment = [];
-const addFilterByDepartment = [];
-/*
-This function will get all interns from a specific department
-and will add everyone from that department to an array
-*/
-function getByDepartment(role) {
-   fetch('./interns.json')
-       .then((response) => response.json())
-       .then((json) => {
-           // Filter the interns based on the department
-           if (json.interns && Array.isArray(json.interns)) {
-               filterByDepartment = json.interns
-               //filter the array to those interns
-               .filter(intern => intern.department === role)
-               //map to the names of those interns
-               .map(intern => ({
-                   name: intern.name,
-                   location: intern.location,
-                   department: intern.department
-           }));
-           }
-           filterByDepartment.forEach(intern => {
-               addFilterByDepartment.push({
-                   name: intern.name,
-                   location: intern.location,
-                   department: intern.department
-               });
-           })
-           console.log(addFilterByDepartment)
-       })
-       .catch((error) => console.error('Error fetching data:', error));
-}
-/*
-When the box is unchecked this will automatically get the interns
-from the specified department and will remove them from the array.
-*/
-function removeByDepartment(role) {
-   fetch('./interns.json')
-       .then((response) => response.json())
-       .then((json) => {
-           // let filterByDepartment = [];
-           if (json.interns && Array.isArray(json.interns)) {
-               filterByDepartment = json.interns
-                   .filter(intern => intern.department === role)
-                   .map(intern => ({
-                       name: intern.name,
-                       location: intern.location,
-                       department: intern.department
-               }));
-           }
-        
-           // Remove the interns from addFilterByLocation
-           filterByDepartment.forEach(intern => {
-               const index = addFilterByDepartment.findIndex(addIntern=>
-                   addIntern.name === intern.name &&
-                   addIntern.department === intern.department &&
-                   addIntern.location === intern.location
-               );
+   // Remove interns from the department filter array when unchecked
+   function removeByDepartment(role) {
+      fetch('./interns.json')
+         .then(response => response.json())
+         .then(json => {
+            const filterByDepartment = json.interns.filter(intern => intern.department === role);
+            filterByDepartment.forEach(intern => {
+               const index = addFilterByDepartment.findIndex(i => i.name === intern.name);
                if (index !== -1) {
-                   addFilterByDepartment.splice(index, 1); // Remove from array
+                  addFilterByDepartment.splice(index, 1); // Remove from array
                }
-           });
-           console.log(addFilterByDepartment);
-       })
-       .catch((error) => console.error('Error fetching data:', error));
-}
-department.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-   checkbox.addEventListener("change", function() {
-       if (checkbox.checked) {
-           getByDepartment(checkbox.value); // Add interns to the array when checked
-       } else {
-           removeByDepartment(checkbox.value); // Remove interns from the array when unchecked
-       }
+            });
+            console.log("Removed from filterByDepartment: ", filterByDepartment);
+            filterArray(addFilterByDepartment, addFilterByLocation); // Apply filter
+         })
+         .catch(error => console.error('Error fetching data:', error));
+   }
+
+   // Event listeners for department checkboxes
+   department.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+      checkbox.addEventListener("change", function() {
+         if (checkbox.checked) {
+            getByDepartment(checkbox.value); // Add interns to the array when checked
+         } else {
+            removeByDepartment(checkbox.value); // Remove interns from the array when unchecked
+         }
+      });
    });
-});
 
-
-
-
+   // Event listeners for location checkboxes
+   location.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+      checkbox.addEventListener("change", function() {
+         if (checkbox.checked) {
+            getByLocation(checkbox.value); // Add interns to the array when checked
+         } else {
+            removeByLocation(checkbox.value); // Remove interns from the array when unchecked
+         }
+      });
+   });
 //----------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -288,56 +233,8 @@ department.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
 /*
 The function gets the intersection of the department and location arrays
 */
-const intersection = []
-function filterArray(arr1,arr2){
-   if(arr1.length == 0){
-       arr2.forEach(intern=>{
-           intersection.push({
-               name: intern.name,
-               location: intern.location,
-               department: intern.department
-       })
-       })
-       console.log(intersection)
-   }else if(arr2.length == 0){
-       arr1.forEach(intern=>{
-           intersection.push({
-               name: intern.name,
-               location: intern.location,
-               department: intern.department
-           })
-       })
-       console.log(intersection)
-   }else{
-       //come back here if anything breaks
-       const intern = arr1.filter(n => arr2.some(n2=>n.name === n2.name
-       ));
-       intern.forEach(intern=>{
-           intersection.push({
-               name: intern.name,
-               location: intern.location,
-               department: intern.department
-           })
-        })
-       console.log(intersection);
-   }
-   const checkboxes = internPool.querySelectorAll('input[type="checkbox"]');
-        
-   checkboxes.forEach(checkbox => {
-       const checkboxValue = checkbox.value; // Assuming the value is the intern's name
-       // Check if this checkbox's value (intern name) exists in the intersection array
-       const internIntersetion = intersection.find(intern => intern.name === checkboxValue);
-       // Set the checkbox state based on whether the intern is in the intersection
-       if (internIntersetion) {
-           checkbox.checked = true;  // If an intern is found in the intersection, check the checkbox
-       } else {
-           checkbox.checked = false; // If no intern is found, uncheck the checkbox
-       }    });
-}
-filter.addEventListener("click", function(){
-   intersection.length = 0
-   filterArray(addFilterByDepartment,addFilterByLocation)
-})
+
+
    //this is for selecting all the boxes of the interns
 selectAll.addEventListener("click",function(){
    const checkboxes = internPool.querySelectorAll('input[type="checkbox"]');
@@ -347,10 +244,22 @@ selectAll.addEventListener("click",function(){
 })
 //this is for deselcting all the boxes of the interns
 deselectAll.addEventListener("click",function(){
-   const checkboxes = internPool.querySelectorAll('input[type="checkbox"]');
+    const checkboxes = internPool.querySelectorAll('input[type="checkbox"]');
+    const locationCheckboxes = location.querySelectorAll('input[type="checkbox"]');
+    const departmentCheckboxes = department.querySelectorAll('input[type="checkbox"]');
+   
    checkboxes.forEach(checkbox =>{
        checkbox.checked = false
    })
+   locationCheckboxes.forEach(checkbox=>{
+    checkbox.checked = false
+   })
+   departmentCheckboxes.forEach(checkbox=>{
+    checkbox.checked = false
+   })
+   intersection.length=0
+   addFilterByDepartment.length = 0;
+   addFilterByLocation.length = 0;
 })
 
 
