@@ -111,37 +111,7 @@ document.addEventListener("click", function () {
    }
    getAll(); // Call on page load
 
-   // Function to check/uncheck the boxes based on filters
-   function filterArray(departments, locations) {
-      const checkboxes = internPool.querySelectorAll('input[type="checkbox"]');
-      intersection.length = 0; // Clear the intersection array
-
-      // If both departments and locations filters are empty, uncheck all checkboxes
-      if (departments.length === 0 && locations.length === 0) {
-         checkboxes.forEach(checkbox => checkbox.checked = false);
-         console.log("All filters are unchecked, no checkboxes should be checked.");
-         return;
-      }
-
-      // Loop through each intern in the `names` array
-      names.forEach(intern => {
-         const checkbox = Array.from(checkboxes).find(c => c.value === intern.name);
-         const inDepartmentFilter = departments.length === 0 || departments.some(d => d.name === intern.name);
-         const inLocationFilter = locations.length === 0 || locations.some(l => l.name === intern.name);
-
-         // If intern matches both filters (or filters are empty), check the box, otherwise uncheck it
-         if (inDepartmentFilter && inLocationFilter) {
-            checkbox.checked = true; // Check the checkbox
-            intersection.push(intern); // Add intern to intersection
-         } else {
-            checkbox.checked = false; // Uncheck the checkbox
-         }
-      });
-
-      // Log the intersection of filtered interns
-      console.log("Filtered Intersection: ", intersection);
-   }
-
+   
    // Fetch interns by location and update the filter array
    function getByLocation(place) {
       fetch('./interns.json')
@@ -233,7 +203,35 @@ document.addEventListener("click", function () {
 /*
 The function gets the intersection of the department and location arrays
 */
+function filterArray(departments, locations) {
+   const checkboxes = internPool.querySelectorAll('input[type="checkbox"]');
+   intersection.length = 0; // Clear the intersection array
 
+   // If both departments and locations filters are empty, uncheck all checkboxes
+   if (departments.length === 0 && locations.length === 0) {
+      checkboxes.forEach(checkbox => checkbox.checked = false);
+      console.log("All filters are unchecked, no checkboxes should be checked.");
+      return;
+   }
+
+   // Loop through each intern in the `names` array
+   names.forEach(intern => {
+      const checkbox = Array.from(checkboxes).find(c => c.value === intern.name);
+      const inDepartmentFilter = departments.length === 0 || departments.some(d => d.name === intern.name);
+      const inLocationFilter = locations.length === 0 || locations.some(l => l.name === intern.name);
+
+      // If intern matches both filters (or filters are empty), check the box, otherwise uncheck it
+      if (inDepartmentFilter && inLocationFilter) {
+         checkbox.checked = true; // Check the checkbox
+         intersection.push(intern); // Add intern to intersection
+      } else {
+         checkbox.checked = false; // Uncheck the checkbox
+      }
+   });
+
+   // Log the intersection of filtered interns
+   console.log("Filtered Intersection: ", intersection);
+}
 
    //this is for selecting all the boxes of the interns
 selectAll.addEventListener("click",function(){
